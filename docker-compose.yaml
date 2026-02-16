@@ -1,0 +1,10 @@
+services:
+  mkdocs:
+    image: "mkdocs"
+    build:
+      context: .
+    ports:
+      - "8888:8000"
+    volumes:
+      - .:/docs
+    
