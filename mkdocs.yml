@@ -1,8 +1,8 @@
 site_name: BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok
 site_author: Pomázi Krisztián
 copyright: Copyright &copy; BME VIK AUT
-repo_name: viaubxav082/demok
-repo_url: https://github.com/viaubxav082/demok
+repo_name: bmeviaubxav082/demok
+repo_url: https://github.com/bmeviaubxav082/demok
 
 theme:
   name: material
@@ -80,7 +80,7 @@ plugins:
       timezone: Europe/Budapest
       locale: hu
   - git-committers:
-      repository: viaubxav082/demok
+      repository: bmeviaubxav082/demok
       branch: main
 
 nav:
