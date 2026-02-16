@@ -84,6 +84,7 @@ plugins:
       branch: main
 
 nav:
+  - "Kezdőlap": index.md
   - "Demók":
       - demok/1/index.md
       - demok/2/index.md
