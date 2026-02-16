@@ -5,7 +5,7 @@
     **Platform**: Google Colab (vagy bármilyen Jupyter környezet)  
     **Nyelv**: Python  
     **Téma**: Időjárás/IoT – magyar városok hőmérséklet-elemzése  
-    **Notebook**: [`demo1_python_pipeline.ipynb`](demo1_python_pipeline.ipynb)  
+    **Notebook**: [`demo1_python_pipeline.ipynb`](https://github.com/BMEVIAUBXAV082/demok/blob/main/docs/demok/1/demo1_python_pipeline.ipynb)  
 
 ## Célkitűzés
 
