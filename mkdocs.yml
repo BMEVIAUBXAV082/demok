@@ -80,7 +80,7 @@ plugins:
       timezone: Europe/Budapest
       locale: hu
   - git-committers:
-      repository: viaubxav081/demok
+      repository: viaubxav082/demok
       branch: main
 
 nav:
