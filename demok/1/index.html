@@ -1,0 +1,948 @@
+<!DOCTYPE html><html lang="hu" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Pomázi Krisztián">
+      
+      
+      
+      
+        <link rel="next" href="../2/">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
+    
+    
+      
+        <title>Demo 1: Teljes Data Engineering Pipeline Python-ban - BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#demo-1-teljes-data-engineering-pipeline-python-ban" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok" class="md-header__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Demo 1: Teljes Data Engineering Pipeline Python-ban
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red" aria-label="Váltás sötét témára" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"></path></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="" aria-label="Váltás világos témára" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"></path></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Keresés">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/viaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    viaubxav082/demok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Demók
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok" class="md-nav__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok" data-md-component="logo">
+      
+  <img src="../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUBXAV082 - Data Engineering a gyakorlatban laborfeladatok
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/viaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    viaubxav082/demok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Demók
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Demók
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demo 1: Teljes Data Engineering Pipeline Python-ban
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Demo 1: Teljes Data Engineering Pipeline Python-ban
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#celkituzes" class="md-nav__link">
+    Célkitűzés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elofeltetelek" class="md-nav__link">
+    Előfeltételek
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-lepesek" class="md-nav__link">
+    Pipeline lépések
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline lépések">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-generalas-generation" class="md-nav__link">
+    1. Generálás (Generation)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bevitel-ingestion-pull-minta" class="md-nav__link">
+    2. Bevitel – Ingestion (Pull minta)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tarolas-storage-sqlite" class="md-nav__link">
+    3. Tárolás (Storage) – SQLite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transzformacio" class="md-nav__link">
+    4. Transzformáció
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kiszolgalas-serving-dashboard" class="md-nav__link">
+    5. Kiszolgálás (Serving) – Dashboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-adatminoseg-undercurrents" class="md-nav__link">
+    6. Adatminőség (Undercurrents)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hasznalt-python-csomagok" class="md-nav__link">
+    Használt Python csomagok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-mapping" class="md-nav__link">
+    Lifecycle mapping
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        Demo 2: Modern Data Engineering Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#celkituzes" class="md-nav__link">
+    Célkitűzés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elofeltetelek" class="md-nav__link">
+    Előfeltételek
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-lepesek" class="md-nav__link">
+    Pipeline lépések
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline lépések">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-generalas-generation" class="md-nav__link">
+    1. Generálás (Generation)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bevitel-ingestion-pull-minta" class="md-nav__link">
+    2. Bevitel – Ingestion (Pull minta)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tarolas-storage-sqlite" class="md-nav__link">
+    3. Tárolás (Storage) – SQLite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transzformacio" class="md-nav__link">
+    4. Transzformáció
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kiszolgalas-serving-dashboard" class="md-nav__link">
+    5. Kiszolgálás (Serving) – Dashboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-adatminoseg-undercurrents" class="md-nav__link">
+    6. Adatminőség (Undercurrents)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hasznalt-python-csomagok" class="md-nav__link">
+    Használt Python csomagok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-mapping" class="md-nav__link">
+    Lifecycle mapping
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="demo-1-teljes-data-engineering-pipeline-python-ban">Demo 1: Teljes Data Engineering Pipeline Python-ban<a class="headerlink" href="#demo-1-teljes-data-engineering-pipeline-python-ban" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Áttekintés</p>
+<p><strong>Időtartam</strong>: ~15 perc<br>
+<strong>Platform</strong>: Google Colab (vagy bármilyen Jupyter környezet)<br>
+<strong>Nyelv</strong>: Python<br>
+<strong>Téma</strong>: Időjárás/IoT – magyar városok hőmérséklet-elemzése<br>
+<strong>Notebook</strong>: <a href="https://github.com/BMEVIAUBXAV082/demok/blob/main/docs/demok/1/demo1_python_pipeline.ipynb"><code>demo1_python_pipeline.ipynb</code></a>  </p>
+</div>
+<h2 id="celkituzes">Célkitűzés<a class="headerlink" href="#celkituzes" title="Permanent link">¶</a></h2>
+<p>A teljes Data Engineering életciklus bemutatása <strong>kizárólag Python</strong> eszközökkel, Docker és felhőszolgáltatás nélkül. A demó végigvezet mind az öt fázison, plusz az adatminőségi ellenőrzéseken (undercurrents).</p>
+<pre class="mermaid"><code>graph LR
+    A[1. Generálás&lt;br&gt;Faker] --&gt; B[2. Ingestion&lt;br&gt;Open-Meteo API]
+    B --&gt; C[3. Tárolás&lt;br&gt;SQLite]
+    C --&gt; D[4. Transzformáció&lt;br&gt;pandas]
+    D --&gt; E[5. Serving&lt;br&gt;matplotlib]
+
+    F[Adatminőség] -.-&gt; C
+    F -.-&gt; D
+    F -.-&gt; E
+
+    style A fill:#E47400,color:#fff
+    style B fill:#0079A4,color:#fff
+    style C fill:#910A26,color:#fff
+    style D fill:#92D050,color:#000
+    style E fill:#0079A4,color:#fff
+    style F fill:#666,color:#fff</code></pre>
+<hr>
+<h2 id="elofeltetelek">Előfeltételek<a class="headerlink" href="#elofeltetelek" title="Permanent link">¶</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> Google fiók (Colab-hoz)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> Internetkapcsolat (API hívásokhoz)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> Docker <strong>NEM szükséges</strong></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Colab megnyitás</p>
+<p>A notebook feltölthető a <a href="https://colab.research.google.com/">Google Colab</a> felületre a <code>colab/demo1_python_pipeline.ipynb</code> fájllal, vagy közvetlenül megnyitható GitHub-ról.</p>
+</div>
+<hr>
+<h2 id="pipeline-lepesek">Pipeline lépések<a class="headerlink" href="#pipeline-lepesek" title="Permanent link">¶</a></h2>
+<h3 id="1-generalas-generation">1. Generálás (Generation)<a class="headerlink" href="#1-generalas-generation" title="Permanent link">¶</a></h3>
+<p>A <code>Faker</code> library segítségével 10 magyar város időjárás-állomásának metaadatait generáljuk: város neve, koordináták (lat/lon), tengerszint feletti magasság.</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">Állomások generálása</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">(</span><span class="s1">'hu_HU'</span><span class="p">)</span>
+
+<span class="n">cities</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Budapest"</span><span class="p">,</span>  <span class="s2">"lat"</span><span class="p">:</span> <span class="mf">47.4979</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">:</span> <span class="mf">19.0402</span><span class="p">,</span> <span class="s2">"elevation"</span><span class="p">:</span> <span class="mi">96</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Debrecen"</span><span class="p">,</span>  <span class="s2">"lat"</span><span class="p">:</span> <span class="mf">47.5316</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">:</span> <span class="mf">21.6273</span><span class="p">,</span> <span class="s2">"elevation"</span><span class="p">:</span> <span class="mi">121</span><span class="p">},</span>
+    <span class="c1"># ... további 8 város</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></tbody></table></div>
+<div class="admonition note">
+<p class="admonition-title">Miért Faker?</p>
+<p>Éles rendszerben a forrásadatok valódi szenzorokból vagy adatbázisokból érkeznek. A Faker segítségével szimulálhatjuk a metaadat-generálást tanulási célra.</p>
+</div>
+<hr>
+<h3 id="2-bevitel-ingestion-pull-minta">2. Bevitel – Ingestion (Pull minta)<a class="headerlink" href="#2-bevitel-ingestion-pull-minta" title="Permanent link">¶</a></h3>
+<p>Az <a href="https://open-meteo.com/">Open-Meteo API</a> segítségével <strong>30 nap óránkénti</strong> időjárási adatokat kérünk le minden állomáshoz. Ez egy tipikus <strong>Pull ingestion</strong> minta: mi kezdeményezzük a lekérést REST API-n keresztül.</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">API hívás</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">Open-Meteo lekérés</span><pre><span></span><code><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.open-meteo.com/v1/forecast"</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"latitude"</span><span class="p">:</span> <span class="mf">47.4979</span><span class="p">,</span>
+    <span class="s2">"longitude"</span><span class="p">:</span> <span class="mf">19.0402</span><span class="p">,</span>
+    <span class="s2">"hourly"</span><span class="p">:</span> <span class="s2">"temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation"</span><span class="p">,</span>
+    <span class="s2">"start_date"</span><span class="p">:</span> <span class="s2">"2024-01-01"</span><span class="p">,</span>
+    <span class="s2">"end_date"</span><span class="p">:</span> <span class="s2">"2024-01-31"</span><span class="p">,</span>
+    <span class="s2">"timezone"</span><span class="p">:</span> <span class="s2">"Europe/Budapest"</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Válasz struktúra</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">API válasz (részlet)</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"hourly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"2024-01-01T00:00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2024-01-01T01:00"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"temperature_2m"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2.1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"relative_humidity_2m"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w"> </span><span class="mi">89</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"wind_speed_10m"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">12.3</span><span class="p">,</span><span class="w"> </span><span class="mf">11.8</span><span class="p">,</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Várt eredmény</p>
+<p>~7 440 mérési rekord (10 állomás × 31 nap × 24 óra)</p>
+</div>
+<hr>
+<h3 id="3-tarolas-storage-sqlite">3. Tárolás (Storage) – SQLite<a class="headerlink" href="#3-tarolas-storage-sqlite" title="Permanent link">¶</a></h3>
+<p>A nyers adatokat SQLite adatbázisba mentjük. Ez a <strong>raw zóna</strong> – az adatok változtatás nélkül kerülnek tárolásra.</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">Séma</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">stations</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">station_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">city</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">latitude</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">longitude</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">elevation</span><span class="w"> </span><span class="nb">INTEGER</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">raw_weather</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">station_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">stations</span><span class="p">(</span><span class="n">station_id</span><span class="p">),</span>
+<span class="w">    </span><span class="k">timestamp</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">temperature_c</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">humidity_pct</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">wind_speed_kmh</span><span class="w"> </span><span class="nb">REAL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">precipitation_mm</span><span class="w"> </span><span class="nb">REAL</span>
+<span class="p">);</span>
+</code></pre></div></td></tr></tbody></table></div>
+<div class="admonition info">
+<p class="admonition-title">Éles környezetben</p>
+<p>SQLite helyett PostgreSQL, Amazon S3 (data lake), vagy Apache Hive tárolás lenne – de az elv ugyanaz: a nyers adatokat változtatás nélkül tároljuk.</p>
+</div>
+<hr>
+<h3 id="4-transzformacio">4. Transzformáció<a class="headerlink" href="#4-transzformacio" title="Permanent link">¶</a></h3>
+<p>A pandas library segítségével többlépéses transzformációt végzünk:</p>
+<table>
+<thead>
+<tr>
+<th>Lépés</th>
+<th>Művelet</th>
+<th>Leírás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td>Betöltés</td>
+<td>SQLite → pandas DataFrame (JOIN stations + weather)</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Tisztítás</td>
+<td>Null kezelés, outlier szűrés (hőmérséklet: -40°C – 50°C)</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Aggregáció</td>
+<td>Óránkénti → napi: átlag, min, max hőmérséklet</td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>Feature engineering</td>
+<td>7 napos mozgóátlag, napi hőingás</td>
+</tr>
+<tr>
+<td>4.5</td>
+<td>Anomália detekció</td>
+<td>Z-score alapú: |z| &gt; 2.0 → anomália</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><span class="filename">Napi aggregáció</span><pre><span></span><code><span class="n">daily</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"station_id"</span><span class="p">,</span> <span class="s2">"city"</span><span class="p">,</span> <span class="s2">"date"</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">avg_temp</span><span class="o">=</span><span class="p">(</span><span class="s2">"temperature_c"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+    <span class="n">min_temp</span><span class="o">=</span><span class="p">(</span><span class="s2">"temperature_c"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">),</span>
+    <span class="n">max_temp</span><span class="o">=</span><span class="p">(</span><span class="s2">"temperature_c"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">),</span>
+    <span class="n">total_precip</span><span class="o">=</span><span class="p">(</span><span class="s2">"precipitation_mm"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="5-kiszolgalas-serving-dashboard">5. Kiszolgálás (Serving) – Dashboard<a class="headerlink" href="#5-kiszolgalas-serving-dashboard" title="Permanent link">¶</a></h3>
+<p>4 paneles matplotlib dashboard:</p>
+<ol>
+<li><strong>Hőmérséklet trend</strong> – 7 napos mozgóátlag, 5 város</li>
+<li><strong>Átlaghőmérséklet</strong> – városonkénti barplot</li>
+<li><strong>Heatmap</strong> – város × nap hőmérséklet mátrix</li>
+<li><strong>Csapadék</strong> – összesített csapadék városonként</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Éles környezetben</p>
+<p>A matplotlib helyett Tableau, PowerBI, Metabase vagy Streamlit dashboard lenne, amit az üzleti felhasználók böngészőben érnek el.</p>
+</div>
+<hr>
+<h3 id="6-adatminoseg-undercurrents">6. Adatminőség (Undercurrents)<a class="headerlink" href="#6-adatminoseg-undercurrents" title="Permanent link">¶</a></h3>
+<p>5 automatikus ellenőrzés fut a pipeline végén:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>Teljesség</strong> – legalább 95% adat megérkezett</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>Frissesség</strong> – legutóbbi adat &lt; 48 órás</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>Tartomány</strong> – hőmérséklet [-50°C, 60°C] között</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>Null arány</strong> – max 5% hiányzó adat</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>Egyediség</strong> – minden állomás szerepel</li>
+</ul>
+<hr>
+<h2 id="hasznalt-python-csomagok">Használt Python csomagok<a class="headerlink" href="#hasznalt-python-csomagok" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Csomag</th>
+<th>Verzió</th>
+<th>Szerep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>faker</code></td>
+<td>≥18.0</td>
+<td>Szintetikus adat generálás</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>≥2.28</td>
+<td>HTTP API hívások</td>
+</tr>
+<tr>
+<td><code>pandas</code></td>
+<td>≥2.0</td>
+<td>Adattranszformáció</td>
+</tr>
+<tr>
+<td><code>sqlite3</code></td>
+<td>stdlib</td>
+<td>Könnyűsúlyú adatbázis</td>
+</tr>
+<tr>
+<td><code>matplotlib</code></td>
+<td>≥3.7</td>
+<td>Vizualizáció</td>
+</tr>
+<tr>
+<td><code>seaborn</code></td>
+<td>≥0.12</td>
+<td>Statisztikai vizualizáció</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lifecycle-mapping">Lifecycle mapping<a class="headerlink" href="#lifecycle-mapping" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>DE Lifecycle fázis</th>
+<th>Megvalósítás</th>
+<th>Python eszköz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generálás</td>
+<td>Állomás metaadatok</td>
+<td><code>faker</code></td>
+</tr>
+<tr>
+<td>Bevitel (Ingestion)</td>
+<td>REST API lekérés (Pull)</td>
+<td><code>requests</code></td>
+</tr>
+<tr>
+<td>Tárolás (Storage)</td>
+<td>SQLite adatbázis</td>
+<td><code>sqlite3</code></td>
+</tr>
+<tr>
+<td>Transzformáció</td>
+<td>Tisztítás, aggregáció, feature eng.</td>
+<td><code>pandas</code></td>
+</tr>
+<tr>
+<td>Kiszolgálás (Serving)</td>
+<td>Dashboard vizualizáció</td>
+<td><code>matplotlib</code>, <code>seaborn</code></td>
+</tr>
+<tr>
+<td>Adatminőség</td>
+<td>5 automatikus ellenőrzés</td>
+<td>assertions</td>
+</tr>
+</tbody>
+</table>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2026. február 16. 15:14:39">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. február 16. 15:14:39 CET"><span class="timeago" datetime="2026-02-16T15:14:39+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. február 16. 15:14:39 CET">2026-02-16</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Vissza a tetejére
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
