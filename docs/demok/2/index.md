@@ -5,7 +5,7 @@
     **Platform**: Docker Compose (lokális)  
     **Eszközök**: PostgreSQL + MinIO + DuckDB + Jupyter  
     **Téma**: E-commerce – Medallion/Lakehouse architektúra  
-    **Notebook és scriptek**: ['docker'](docker)  
+    **Notebook és scriptek**: [`github mappa`](https://github.com/BMEVIAUBXAV082/demok/tree/main/docs/demok/2/docker)  
 
 ## Célkitűzés
 
