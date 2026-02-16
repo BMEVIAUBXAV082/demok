@@ -1,6 +1,4 @@
-# Mesterséges intelligencia alapú szoftverek és szolgáltatások fejlesztése - Laborok
-
-![Build docs](https://github.com/viaubxav082/demok/workflows/Build%20docs/badge.svg?branch=main)
+# Data Engineering a gyakorlatban - Demók
 
 [BMEVIAUBXAV082 - Data Engineering a gyakorlatban](https://www.aut.bme.hu/Course/VIAUBXAV082) tárgy előadás demói.
 
