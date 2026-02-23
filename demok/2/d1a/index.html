@@ -8,13 +8,17 @@
       
       
       
+        <link rel="prev" href="../../1/d2/">
+      
+      
+        <link rel="next" href="../d1b/">
       
       <link rel="icon" href="../../../favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
     
     
       
-        <title>Hozzájárulás az anyaghoz - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
+        <title>Demo 1a: Forrásrendszerek feltárása és Python natív CDC - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hozzajarulas-az-anyaghoz" class="md-skip">
+        <a href="#demo-1a-forrasrendszerek-feltarasa-es-python-nativ-cdc" class="md-skip">
           Kihagyás
         </a>
       
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hozzájárulás az anyaghoz
+              Demo 1a: Forrásrendszerek feltárása és Python natív CDC
             
           </span>
         </div>
@@ -224,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../demok/1/d1/" class="md-tabs__link">
+      <a href="../../1/d1/" class="md-tabs__link">
         1. EA
       </a>
     </li>
@@ -234,13 +238,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../demok/2/d1a/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         2. EA
       </a>
     </li>
@@ -340,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/1/d1/" class="md-nav__link">
+      <a href="../../1/d1/" class="md-nav__link">
         Demo 1: Teljes Data Engineering Pipeline Python-ban
       </a>
     </li>
@@ -354,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/1/d2/" class="md-nav__link">
+      <a href="../../1/d2/" class="md-nav__link">
         Demo 2: Modern Data Engineering Pipeline
       </a>
     </li>
@@ -374,14 +380,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -390,7 +398,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           2. EA
@@ -401,11 +409,121 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../demok/2/d1a/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demo 1a: Forrásrendszerek feltárása és Python natív CDC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Demo 1a: Forrásrendszerek feltárása és Python natív CDC
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inditas" class="md-nav__link">
+    Indítás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-demo-lepesei" class="md-nav__link">
+    A demó lépései
+  </a>
+  
+    <nav class="md-nav" aria-label="A demó lépései">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sema-felterkepezes-schema-discovery" class="md-nav__link">
+    1. Séma feltérképezés (Schema Discovery)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-adatprofiling" class="md-nav__link">
+    2. Adatprofiling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-adatminosegi-ellenorzesek" class="md-nav__link">
+    3. Adatminőségi ellenőrzések
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pull-vs-push-sql-polling-vs-cdc" class="md-nav__link">
+    4. Pull vs Push: SQL Polling vs CDC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-nativ-python-cdc" class="md-nav__link">
+    5. Natív Python CDC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -417,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d1b/" class="md-nav__link">
+      <a href="../d1b/" class="md-nav__link">
         Demo 1b: CDC Debezium-mal és Kafkával
       </a>
     </li>
@@ -431,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d2/" class="md-nav__link">
+      <a href="../d2/" class="md-nav__link">
         Demo 2: Batch ETL/ELT pipeline DuckDB-vel
       </a>
     </li>
@@ -445,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d3/" class="md-nav__link">
+      <a href="../d3/" class="md-nav__link">
         Demo 3: Kafka Streaming Pipeline
       </a>
     </li>
@@ -486,30 +604,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hibak-jelzese" class="md-nav__link">
-    Hibák jelzése
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#valtoztatasok-javaslasa" class="md-nav__link">
-    Változtatások javaslása
+  <a href="#inditas" class="md-nav__link">
+    Indítás
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-style" class="md-nav__link">
-    Code style
+  <a href="#a-demo-lepesei" class="md-nav__link">
+    A demó lépései
   </a>
   
-    <nav class="md-nav" aria-label="Code style">
+    <nav class="md-nav" aria-label="A demó lépései">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vscode" class="md-nav__link">
-    VSCode
+  <a href="#1-sema-felterkepezes-schema-discovery" class="md-nav__link">
+    1. Séma feltérképezés (Schema Discovery)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-adatprofiling" class="md-nav__link">
+    2. Adatprofiling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-adatminosegi-ellenorzesek" class="md-nav__link">
+    3. Adatminőségi ellenőrzések
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pull-vs-push-sql-polling-vs-cdc" class="md-nav__link">
+    4. Pull vs Push: SQL Polling vs CDC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-nativ-python-cdc" class="md-nav__link">
+    5. Natív Python CDC
   </a>
   
 </li>
@@ -520,29 +666,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ajanlasok" class="md-nav__link">
-    Ajánlások
-  </a>
-  
-    <nav class="md-nav" aria-label="Ajánlások">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#android" class="md-nav__link">
-    Android
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#markdown-fileok" class="md-nav__link">
-    Markdown Fileok
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -564,141 +697,124 @@
   
 
 
-<h1 id="hozzajarulas-az-anyaghoz">Hozzájárulás az anyaghoz<a class="headerlink" href="#hozzajarulas-az-anyaghoz" title="Permanent link">¶</a></h1>
-<p>Az anyag terjedelméből adandóan apróbb hibák esetenként hiányosságok jelentkezhetnek a laborokban.
-Ha egy ilyennel találkozol és úgy döntesz szeretnél segíteni hallgatótársaidnak, azt a következőkben leírtak alapján tudod megtenni.</p>
-<div class="admonition quote">
-<p class="admonition-title">Plusz pont jegyzet javításért</p>
-<p>Más tantárgyak mintájára itt is szeretnénk plusz pontot adni a jegyzet open-source hozzájárulásaiért.
-Akik a tárgyat jelenleg hallgatják, pontokat kaphatnak hozzájárulásaikérrt.</p>
-<p>A félév során max 3 db plusz pontot lehet szerezni fejenként olyan javításokért, amik a triviális 1-2 betű elgépelésen túl érdemben javítanak a githubon található labor jegyzetek minőségén.
-Pl.: jelentős mennyiségű elgépelés javítása, egyértelműsítések, illusztrációk kiegészítések készítése vagy akár egy teljes kiegészítő jegyzet írása  (természetesen nem azonos pontértékkel).</p>
-<p>Persze a pont nélkül az 1-1 betűs elgépeléseket is szívesen fogadjuk, ami bemelegítésnek is tökéletes.</p>
+<h1 id="demo-1a-forrasrendszerek-feltarasa-es-python-nativ-cdc">Demo 1a: Forrásrendszerek feltárása és Python natív CDC<a class="headerlink" href="#demo-1a-forrasrendszerek-feltarasa-es-python-nativ-cdc" title="Permanent link">¶</a></h1>
+<h2 id="attekintes">Áttekintés<a class="headerlink" href="#attekintes" title="Permanent link">¶</a></h2>
+<p>Ez a demó bemutatja, hogyan térképezzük fel egy PostgreSQL forrásrendszert mérnöki szempontból, és hogyan valósítunk meg natív Python CDC-t (Change Data Capture) a WAL (Write-Ahead Log) logical replication segítségével.</p>
+<div class="admonition info">
+<p class="admonition-title">Előfeltételek</p>
+<p>A Docker környezet fut (<code>docker compose up -d</code>), a PostgreSQL adatbázis elérhető.</p>
 </div>
-<h2 id="hibak-jelzese">Hibák jelzése<a class="headerlink" href="#hibak-jelzese" title="Permanent link">¶</a></h2>
-<p>Amennyiben hibát találsz az anyagban, vagy szeretnéd bővíteni, de nem áll módodban javítani, nyithatsz egy issue-t amiben leírod a hibát.</p>
-<ol>
-<li>Nézd meg, hogy valaki nem jelezte-e, amit szeretnél.
-    Gyakran már létező problémákat találnak, amire már van pull request,
-    így mielőtt bármit tennél nézd meg valaki nem előzött-e meg</li>
-<li>Az issues tabon a new issue gombbal hozz létre egy új issue-t.
-    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/github-new-issue.png" data-desc-position="bottom"><img alt="How to create new issue" src="../assets/github-new-issue.png"></a></li>
-<li>Lásd el a megfelelő címkékkel<ol>
-<li>A labor típusa (<code>android</code> az androidos laboroknál)</li>
-<li>A hiba típusa (<code>clarification</code>, <code>typo</code>, <code>illustration</code> vagy <code>notes</code>)</li>
-</ol>
-</li>
-<li>Írd le, hogy mit kéne tartalmaznia a javításnak</li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Az címe legyen rövid és lényegretörő, pl.: <code>Megfogalmazás pontosítása a 4. laborban</code> vagy <code>A 6. laborban a leírt kód hibásan működik Android 12-n</code></p>
-<p>A issue descriptionjében pedig fejtsd ki, hol található a hiányosság, illetve ha van rá ötleted, hogy lehetne orvosolni ezt.
-Ha ezeken túl még screenshotot is tudsz mellékelni, az nagyban megsegíti a probléma mihamarabbi javítását.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A github issues nem a laborfeladatok megoldásával kapcsolatos problémák helye, így a "Nem tudom megoldani hogy az értesítés megérkezzen" jellegű problémákat ne itt jelezzétek, erre vannak a laboralkalmak.</p>
-</div>
-<h2 id="valtoztatasok-javaslasa">Változtatások javaslása<a class="headerlink" href="#valtoztatasok-javaslasa" title="Permanent link">¶</a></h2>
-<p>Amennyiben a hozzájárulásod meg tudod valósítani indíts pull requestet</p>
-<ol>
-<li>
-<p>Forkold a repository-t a Githubon jobb felső sarokban található gombbal
-    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/github-fork.png" data-desc-position="bottom"><img alt="fork button" src="../assets/github-fork.png"></a></p>
-</li>
-<li>
-<p>Végezd el a változtatásokat.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Ez nagyon hasonlóan működik <a href="../GitHub/">a laborok beadaásához</a></p>
-</div>
-<ol>
-<li>
-<p>Hozz létre egy branchet a saját forkodon, amin a változtatásokat el fogod végezni.</p>
-</li>
-<li>
-<p>Ezen a branchen készítsd el a javításokat</p>
-</li>
-<li>
-<p>Ellenőrizd, hogy ne kerüljön bele a commitba olyan file, amit az editor generált (pl.: <code>.idea</code> mappa)
-illetve olyan file aminek nem kéne kikerülnie, pl.: Github Private Access Token</p>
-</li>
-<li>
-<p>Ha kész vagy a laborok beadásához hasonlóan indíts egy pull requestet a <code>VIAUAC00/laborok</code> <code>master</code> branchére.</p>
-</li>
-<li>
-<p>Lásd el a megfelelő címkékkel</p>
-<ol>
-<li>A labor típusa (<code>android</code> az androidos laboroknál és <code>web</code> a webes laboroknál)</li>
-<li>A hiba típusa (<code>clarification</code>, <code>typo</code>, <code>illustration</code> vagy <code>notes</code>)</li>
-</ol>
-</li>
-<li>A leírásban részletezd változtatások okát.
-    Ne felejtsd el beleírni a NEPTUN kódod a leírásba, mert így fogjuk tudni megadni a pontokat.</li>
-</ol>
-</li>
-<li>
-<p>Valaki, akinek hozzáférése van a repositoryhoz, ellenőrzi a változtatások szükségességét, és elbírálja, hogy valóban bekerülhet az anyagba.</p>
-</li>
-<li>A változtatásokra review-t indítunk és ha kell módosításokat fogunk kérni.</li>
-<li>Ha minden kért változtatás megtörtént, a hozzájárulásod belekerül az anyagba.</li>
-</ol>
-<h2 id="code-style">Code style<a class="headerlink" href="#code-style" title="Permanent link">¶</a></h2>
-<ul>
-<li>Kotlin: a <a href="https://kotlinlang.org/docs/coding-conventions.html">hivatalos style guide</a> alapján</li>
-<li>Markdown: Mivel az alap spec nem mindig a legtisztábban érthető, a <a href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdownlint szabályai</a> alapján, az néhány kivételével. Ezeket a <code>.markdownlint.yaml</code>-ben találod, ha VSCode-ot használsz automatikusan alkalmazza őket az editor és jelzi ha nem megfelelő amit írsz.</li>
-</ul>
-<p>Ezek a stílusok a tárgyban ajánlott editorokban könnyen beállíthatóak.</p>
-<h3 id="vscode">VSCode<a class="headerlink" href="#vscode" title="Permanent link">¶</a></h3>
-<p>Ajánlott extensionök:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"><code>yzhang.markdown-all-in-one</code></a>: MD szinkronizált live preview</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code>DavidAnson.vscode-markdownlint</code></a>: MD formázás, szabályok stb.</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a>: HTML+CSS formázó</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens">Error Lens</a>: Kiemeli a hibákat hogy gyorsabben megtaláljuk őket</li>
-</ul>
-<p>Az editor beállításához nyisd meg a repo-t a gyökerében VSCode-al. A VSCode fel fogja ajánlani a két markdown extension-t.</p>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/vscode-recommended.png" data-desc-position="bottom"><img alt="VSCode recommended extensions" src="../assets/vscode-recommended.png"></a></p>
-</figure>
-<p>Ha ez megtörtént, nyiss meg egy markdown dokumentumot, és használd a <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> shortcutot, a command palette megnyitásához.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A command palette a VSCode parancsaihoz nyújt hozzáférést, autocompleteeli a parancsokat és egy minimális GUI-t is biztosít.</p>
-</div>
-<p>A command palette-be keressük meg a <code>Format Document With...</code> menüpontot és válasszuk ki.
-Ekkor egy almenübe dob az editor és kiválaszthatjuk hogy melyik formázóval formázzuk a MD dokumentumokat.
-Legalul lesz egy <code>Configure Default Formatter</code>, válasszuk ezt.
-Ezután válasszuk a <code>markdownlint</code> extensiont, és készen vagyunk.</p>
-<div class="admonition caution">
-<p class="admonition-title">Megfelelő formatter kiválasztása</p>
-<p>Ne válaszd ki a prettiert formatterként, mert eltöri a szövegbuborékokat.</p>
-</div>
-<p>Ezen felül érdemes lehet bekapcsolni a mentés előtti formázást.</p>
-<p>A <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-comma">,</kbd></span> shortcuttal megnyitjuk a beállításokat, és rákeresünk arra, hogy format on save.
-Itt kipipáljuk a checkboxot és készen vagyunk.</p>
-<p>Ha ehhez nem lenne türelmed, itt a json amit a <code>settings.json</code>-ba illesztve beállítódik minden.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"[markdown]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DavidAnson.vscode-markdownlint"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<h2 id="inditas">Indítás<a class="headerlink" href="#inditas" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Docker környezet indítása</span>
+<span class="nb">cd</span><span class="w"> </span>week02/docker
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Jupyter notebook megnyitása</span>
+<span class="c1"># Böngészőben: http://localhost:8888 (token: bme2024)</span>
 </code></pre></div>
-<h2 id="ajanlasok">Ajánlások<a class="headerlink" href="#ajanlasok" title="Permanent link">¶</a></h2>
-<h3 id="android">Android<a class="headerlink" href="#android" title="Permanent link">¶</a></h3>
+<h2 id="a-demo-lepesei">A demó lépései<a class="headerlink" href="#a-demo-lepesei" title="Permanent link">¶</a></h2>
+<h3 id="1-sema-felterkepezes-schema-discovery">1. Séma feltérképezés (Schema Discovery)<a class="headerlink" href="#1-sema-felterkepezes-schema-discovery" title="Permanent link">¶</a></h3>
+<p>A forrásrendszer feltérképezése az első lépés minden adatmérnöki projektben:</p>
 <ul>
-<li>Az androidos Kotlin és XML fileokat illetve kódrészleteket Android Studioban formázva érdemes hozzáadni az anyaghoz</li>
-<li>Ahhoz hogy biztosan formázva legyenek a fileok használd a <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-l">L</kbd></span> shortcutot</li>
+<li><strong>Táblák listázása</strong>: <code>pg_tables</code> rendszertáblából</li>
+<li><strong>Oszlop részletek</strong>: <code>information_schema.columns</code></li>
+<li><strong>Sorszámok</strong>: <code>COUNT(*)</code> minden táblára</li>
 </ul>
-<h3 id="markdown-fileok">Markdown Fileok<a class="headerlink" href="#markdown-fileok" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">schemaname</span><span class="p">,</span><span class="w"> </span><span class="n">tablename</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_tables</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">schemaname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'public'</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Gyakorlati tanács</p>
+<p>Éles környezetben a séma discovery automatizált: metadata catalog (DataHub, Amundsen) vagy dbt docs használata javasolt.</p>
+</div>
+<h3 id="2-adatprofiling">2. Adatprofiling<a class="headerlink" href="#2-adatprofiling" title="Permanent link">¶</a></h3>
+<p>Az adatprofiling célja a forrásadatok jellemzőinek megértése:</p>
 <ul>
-<li>A markdown fileokat se az Android Studio se a Visual Studio Code nem rendereli alaphelyzetben.
-  Erre a feladatra a következő extensionöket/pluginokat tudom ajánlani:</li>
-<li>VSCode: <a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"><code>yzhang.markdown-all-in-one</code></a></li>
-<li>Android Studio: <a href="https://plugins.jetbrains.com/plugin/17254-markdown-editor">Markdown Editor</a></li>
+<li><strong>Eloszlások</strong>: szegmens, város, státusz szerinti csoportosítás</li>
+<li><strong>Statisztikák</strong>: min/max/átlag rendelési összeg, időszak</li>
+<li><strong>Anomáliák</strong>: kiugró értékek, üres mezők</li>
 </ul>
+<h3 id="3-adatminosegi-ellenorzesek">3. Adatminőségi ellenőrzések<a class="headerlink" href="#3-adatminosegi-ellenorzesek" title="Permanent link">¶</a></h3>
+<p>Öt minőségi ellenőrzés a forráson:</p>
+<table>
+<thead>
+<tr>
+<th>Ellenőrzés</th>
+<th>SQL logika</th>
+<th>Elvárt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL email</td>
+<td><code>WHERE email IS NULL</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td>Duplikált email</td>
+<td><code>COUNT(*) - COUNT(DISTINCT email)</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td>Árva rendelés</td>
+<td><code>LEFT JOIN</code> ügyfél nélkül</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Negatív összeg</td>
+<td><code>WHERE total_amount &lt; 0</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td>Jövőbeli dátum</td>
+<td><code>WHERE order_date &gt; now()</code></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Fontos</p>
+<p>Az adatminőségi ellenőrzéseket a pipeline részeként kell futtatni, nem csak egyszeri vizsgálatként!</p>
+</div>
+<h3 id="4-pull-vs-push-sql-polling-vs-cdc">4. Pull vs Push: SQL Polling vs CDC<a class="headerlink" href="#4-pull-vs-push-sql-polling-vs-cdc" title="Permanent link">¶</a></h3>
+<p><strong>SQL Polling (Pull)</strong>:</p>
+<ul>
+<li>Periodikus <code>SELECT</code> lekérdezések</li>
+<li>Késleltetés a polling intervallumtól függ</li>
+<li>Terhelés a forrásrendszeren</li>
+<li>Nem látja a köztes állapotokat (UPDATE→UPDATE)</li>
+</ul>
+<p><strong>CDC (Push)</strong>:</p>
+<ul>
+<li>WAL-ból olvassa a változásokat</li>
+<li>Valós idejű (ms-es késleltetés)</li>
+<li>Minimális terhelés a forrásrendszeren</li>
+<li>Minden változás látható (before/after)</li>
+</ul>
+<h3 id="5-nativ-python-cdc">5. Natív Python CDC<a class="headerlink" href="#5-nativ-python-cdc" title="Permanent link">¶</a></h3>
+<p>A PostgreSQL <code>pgoutput</code> plugin és a <code>psycopg2</code> <code>LogicalReplicationConnection</code> segítségével:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Replication slot létrehozása</span>
+<span class="n">rep_cur</span><span class="o">.</span><span class="n">create_replication_slot</span><span class="p">(</span><span class="s2">"demo1a_slot"</span><span class="p">,</span> <span class="n">output_plugin</span><span class="o">=</span><span class="s2">"pgoutput"</span><span class="p">)</span>
+
+<span class="c1"># CDC stream indítása</span>
+<span class="n">rep_cur</span><span class="o">.</span><span class="n">start_replication</span><span class="p">(</span>
+    <span class="n">slot_name</span><span class="o">=</span><span class="s2">"demo1a_slot"</span><span class="p">,</span>
+    <span class="n">decode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"proto_version"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"publication_names"</span><span class="p">:</span> <span class="s2">"dbz_publication"</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>A demóban végrehajtunk INSERT, UPDATE és DELETE műveleteket, majd megfigyeljük a CDC eseményeket.</p>
+<h2 id="kulcsfontossagu-tanulsagok">Kulcsfontosságú tanulságok<a class="headerlink" href="#kulcsfontossagu-tanulsagok" title="Permanent link">¶</a></h2>
+<ol>
+<li>A <strong>séma discovery</strong> automatizálása időt takarít meg és csökkenti a hibákat</li>
+<li>Az <strong>adatprofiling</strong> elengedhetetlen a forrásadatok megértéséhez</li>
+<li>A <strong>minőségi ellenőrzések</strong> a pipeline részei kell legyenek</li>
+<li>A <strong>CDC</strong> hatékonyabb és valós idejűbb mint a polling</li>
+<li>A natív CDC egyszerű, de ipari környezetben <strong>Debezium</strong> javasolt (→ Demo 1b)</li>
+</ol>
+<h2 id="kapcsolodo-notebook">Kapcsolódó notebook<a class="headerlink" href="#kapcsolodo-notebook" title="Permanent link">¶</a></h2>
+<p>A teljes futtatható kód a <code>demo1a-source-discovery.ipynb</code> Jupyter notebookban található.</p>
 
     <hr>
   <div class="md-source-file">
@@ -707,8 +823,8 @@ Itt kipipáljuk a checkboxot és készen vagyunk.</p>
           </path>
         </svg>
       </span>
-      <span title="2026. február 16. 15:11:31">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. február 16. 15:11:31 CET"><span class="timeago" datetime="2026-02-16T15:11:31+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. február 16. 15:11:31 CET">2026-02-16</span>
+      <span title="2026. február 23. 16:17:00">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. február 23. 16:17:00 CET"><span class="timeago" datetime="2026-02-23T16:17:00+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. február 23. 16:17:00 CET">2026-02-23</span>
       </span>
     </span>
 

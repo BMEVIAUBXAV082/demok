@@ -8,13 +8,17 @@
       
       
       
+        <link rel="prev" href="../d1a/">
+      
+      
+        <link rel="next" href="../d2/">
       
       <link rel="icon" href="../../../favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
     
     
       
-        <title>Hozzájárulás az anyaghoz - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
+        <title>Demo 1b: CDC Debezium-mal és Kafkával - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hozzajarulas-az-anyaghoz" class="md-skip">
+        <a href="#demo-1b-cdc-debezium-mal-es-kafkaval" class="md-skip">
           Kihagyás
         </a>
       
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hozzájárulás az anyaghoz
+              Demo 1b: CDC Debezium-mal és Kafkával
             
           </span>
         </div>
@@ -224,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../demok/1/d1/" class="md-tabs__link">
+      <a href="../../1/d1/" class="md-tabs__link">
         1. EA
       </a>
     </li>
@@ -234,13 +238,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../demok/2/d1a/" class="md-tabs__link">
+      <a href="../d1a/" class="md-tabs__link md-tabs__link--active">
         2. EA
       </a>
     </li>
@@ -340,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/1/d1/" class="md-nav__link">
+      <a href="../../1/d1/" class="md-nav__link">
         Demo 1: Teljes Data Engineering Pipeline Python-ban
       </a>
     </li>
@@ -354,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/1/d2/" class="md-nav__link">
+      <a href="../../1/d2/" class="md-nav__link">
         Demo 2: Modern Data Engineering Pipeline
       </a>
     </li>
@@ -374,14 +380,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -390,7 +398,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           2. EA
@@ -403,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d1a/" class="md-nav__link">
+      <a href="../d1a/" class="md-nav__link">
         Demo 1a: Forrásrendszerek feltárása és Python natív CDC
       </a>
     </li>
@@ -415,11 +423,135 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../demok/2/d1b/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demo 1b: CDC Debezium-mal és Kafkával
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Demo 1b: CDC Debezium-mal és Kafkával
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architektura" class="md-nav__link">
+    Architektúra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inditas" class="md-nav__link">
+    Indítás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-demo-lepesei" class="md-nav__link">
+    A demó lépései
+  </a>
+  
+    <nav class="md-nav" aria-label="A demó lépései">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-debezium-connector-regisztralasa" class="md-nav__link">
+    1. Debezium Connector regisztrálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-valtozasok-vegrehajtasa" class="md-nav__link">
+    2. Változások végrehajtása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cdc-esemenyek-kafkaban" class="md-nav__link">
+    3. CDC események Kafkában
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-python-kafka-consumer" class="md-nav__link">
+    4. Python Kafka Consumer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kafka-ui-vizualizacio" class="md-nav__link">
+    5. kafka-ui vizualizáció
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debezium-vs-nativ-cdc-osszehasonlitas" class="md-nav__link">
+    Debezium vs Natív CDC összehasonlítás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -431,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d2/" class="md-nav__link">
+      <a href="../d2/" class="md-nav__link">
         Demo 2: Batch ETL/ELT pipeline DuckDB-vel
       </a>
     </li>
@@ -445,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demok/2/d3/" class="md-nav__link">
+      <a href="../d3/" class="md-nav__link">
         Demo 3: Kafka Streaming Pipeline
       </a>
     </li>
@@ -486,30 +618,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hibak-jelzese" class="md-nav__link">
-    Hibák jelzése
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#valtoztatasok-javaslasa" class="md-nav__link">
-    Változtatások javaslása
+  <a href="#architektura" class="md-nav__link">
+    Architektúra
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-style" class="md-nav__link">
-    Code style
+  <a href="#inditas" class="md-nav__link">
+    Indítás
   </a>
   
-    <nav class="md-nav" aria-label="Code style">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-demo-lepesei" class="md-nav__link">
+    A demó lépései
+  </a>
+  
+    <nav class="md-nav" aria-label="A demó lépései">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vscode" class="md-nav__link">
-    VSCode
+  <a href="#1-debezium-connector-regisztralasa" class="md-nav__link">
+    1. Debezium Connector regisztrálása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-valtozasok-vegrehajtasa" class="md-nav__link">
+    2. Változások végrehajtása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cdc-esemenyek-kafkaban" class="md-nav__link">
+    3. CDC események Kafkában
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-python-kafka-consumer" class="md-nav__link">
+    4. Python Kafka Consumer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kafka-ui-vizualizacio" class="md-nav__link">
+    5. kafka-ui vizualizáció
   </a>
   
 </li>
@@ -520,29 +687,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ajanlasok" class="md-nav__link">
-    Ajánlások
-  </a>
-  
-    <nav class="md-nav" aria-label="Ajánlások">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#android" class="md-nav__link">
-    Android
+  <a href="#debezium-vs-nativ-cdc-osszehasonlitas" class="md-nav__link">
+    Debezium vs Natív CDC összehasonlítás
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#markdown-fileok" class="md-nav__link">
-    Markdown Fileok
+      
+        <li class="md-nav__item">
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
+  </a>
   
 </li>
       
@@ -564,141 +725,187 @@
   
 
 
-<h1 id="hozzajarulas-az-anyaghoz">Hozzájárulás az anyaghoz<a class="headerlink" href="#hozzajarulas-az-anyaghoz" title="Permanent link">¶</a></h1>
-<p>Az anyag terjedelméből adandóan apróbb hibák esetenként hiányosságok jelentkezhetnek a laborokban.
-Ha egy ilyennel találkozol és úgy döntesz szeretnél segíteni hallgatótársaidnak, azt a következőkben leírtak alapján tudod megtenni.</p>
-<div class="admonition quote">
-<p class="admonition-title">Plusz pont jegyzet javításért</p>
-<p>Más tantárgyak mintájára itt is szeretnénk plusz pontot adni a jegyzet open-source hozzájárulásaiért.
-Akik a tárgyat jelenleg hallgatják, pontokat kaphatnak hozzájárulásaikérrt.</p>
-<p>A félév során max 3 db plusz pontot lehet szerezni fejenként olyan javításokért, amik a triviális 1-2 betű elgépelésen túl érdemben javítanak a githubon található labor jegyzetek minőségén.
-Pl.: jelentős mennyiségű elgépelés javítása, egyértelműsítések, illusztrációk kiegészítések készítése vagy akár egy teljes kiegészítő jegyzet írása  (természetesen nem azonos pontértékkel).</p>
-<p>Persze a pont nélkül az 1-1 betűs elgépeléseket is szívesen fogadjuk, ami bemelegítésnek is tökéletes.</p>
+<h1 id="demo-1b-cdc-debezium-mal-es-kafkaval">Demo 1b: CDC Debezium-mal és Kafkával<a class="headerlink" href="#demo-1b-cdc-debezium-mal-es-kafkaval" title="Permanent link">¶</a></h1>
+<h2 id="attekintes">Áttekintés<a class="headerlink" href="#attekintes" title="Permanent link">¶</a></h2>
+<p>Ez a demó az ipari szintű CDC (Change Data Capture) megoldást mutatja be: <strong>Debezium</strong> PostgreSQL connector, <strong>Apache Kafka</strong> üzenetküldés, és Python consumer a változások feldolgozásához.</p>
+<div class="admonition info">
+<p class="admonition-title">Előfeltételek</p>
+<p>A Docker környezet fut (<code>docker compose up -d</code>), a Kafka és Debezium szolgáltatások elérhetők.</p>
 </div>
-<h2 id="hibak-jelzese">Hibák jelzése<a class="headerlink" href="#hibak-jelzese" title="Permanent link">¶</a></h2>
-<p>Amennyiben hibát találsz az anyagban, vagy szeretnéd bővíteni, de nem áll módodban javítani, nyithatsz egy issue-t amiben leírod a hibát.</p>
-<ol>
-<li>Nézd meg, hogy valaki nem jelezte-e, amit szeretnél.
-    Gyakran már létező problémákat találnak, amire már van pull request,
-    így mielőtt bármit tennél nézd meg valaki nem előzött-e meg</li>
-<li>Az issues tabon a new issue gombbal hozz létre egy új issue-t.
-    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/github-new-issue.png" data-desc-position="bottom"><img alt="How to create new issue" src="../assets/github-new-issue.png"></a></li>
-<li>Lásd el a megfelelő címkékkel<ol>
-<li>A labor típusa (<code>android</code> az androidos laboroknál)</li>
-<li>A hiba típusa (<code>clarification</code>, <code>typo</code>, <code>illustration</code> vagy <code>notes</code>)</li>
-</ol>
-</li>
-<li>Írd le, hogy mit kéne tartalmaznia a javításnak</li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Az címe legyen rövid és lényegretörő, pl.: <code>Megfogalmazás pontosítása a 4. laborban</code> vagy <code>A 6. laborban a leírt kód hibásan működik Android 12-n</code></p>
-<p>A issue descriptionjében pedig fejtsd ki, hol található a hiányosság, illetve ha van rá ötleted, hogy lehetne orvosolni ezt.
-Ha ezeken túl még screenshotot is tudsz mellékelni, az nagyban megsegíti a probléma mihamarabbi javítását.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>A github issues nem a laborfeladatok megoldásával kapcsolatos problémák helye, így a "Nem tudom megoldani hogy az értesítés megérkezzen" jellegű problémákat ne itt jelezzétek, erre vannak a laboralkalmak.</p>
-</div>
-<h2 id="valtoztatasok-javaslasa">Változtatások javaslása<a class="headerlink" href="#valtoztatasok-javaslasa" title="Permanent link">¶</a></h2>
-<p>Amennyiben a hozzájárulásod meg tudod valósítani indíts pull requestet</p>
-<ol>
-<li>
-<p>Forkold a repository-t a Githubon jobb felső sarokban található gombbal
-    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/github-fork.png" data-desc-position="bottom"><img alt="fork button" src="../assets/github-fork.png"></a></p>
-</li>
-<li>
-<p>Végezd el a változtatásokat.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Ez nagyon hasonlóan működik <a href="../GitHub/">a laborok beadaásához</a></p>
-</div>
-<ol>
-<li>
-<p>Hozz létre egy branchet a saját forkodon, amin a változtatásokat el fogod végezni.</p>
-</li>
-<li>
-<p>Ezen a branchen készítsd el a javításokat</p>
-</li>
-<li>
-<p>Ellenőrizd, hogy ne kerüljön bele a commitba olyan file, amit az editor generált (pl.: <code>.idea</code> mappa)
-illetve olyan file aminek nem kéne kikerülnie, pl.: Github Private Access Token</p>
-</li>
-<li>
-<p>Ha kész vagy a laborok beadásához hasonlóan indíts egy pull requestet a <code>VIAUAC00/laborok</code> <code>master</code> branchére.</p>
-</li>
-<li>
-<p>Lásd el a megfelelő címkékkel</p>
-<ol>
-<li>A labor típusa (<code>android</code> az androidos laboroknál és <code>web</code> a webes laboroknál)</li>
-<li>A hiba típusa (<code>clarification</code>, <code>typo</code>, <code>illustration</code> vagy <code>notes</code>)</li>
-</ol>
-</li>
-<li>A leírásban részletezd változtatások okát.
-    Ne felejtsd el beleírni a NEPTUN kódod a leírásba, mert így fogjuk tudni megadni a pontokat.</li>
-</ol>
-</li>
-<li>
-<p>Valaki, akinek hozzáférése van a repositoryhoz, ellenőrzi a változtatások szükségességét, és elbírálja, hogy valóban bekerülhet az anyagba.</p>
-</li>
-<li>A változtatásokra review-t indítunk és ha kell módosításokat fogunk kérni.</li>
-<li>Ha minden kért változtatás megtörtént, a hozzájárulásod belekerül az anyagba.</li>
-</ol>
-<h2 id="code-style">Code style<a class="headerlink" href="#code-style" title="Permanent link">¶</a></h2>
-<ul>
-<li>Kotlin: a <a href="https://kotlinlang.org/docs/coding-conventions.html">hivatalos style guide</a> alapján</li>
-<li>Markdown: Mivel az alap spec nem mindig a legtisztábban érthető, a <a href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdownlint szabályai</a> alapján, az néhány kivételével. Ezeket a <code>.markdownlint.yaml</code>-ben találod, ha VSCode-ot használsz automatikusan alkalmazza őket az editor és jelzi ha nem megfelelő amit írsz.</li>
-</ul>
-<p>Ezek a stílusok a tárgyban ajánlott editorokban könnyen beállíthatóak.</p>
-<h3 id="vscode">VSCode<a class="headerlink" href="#vscode" title="Permanent link">¶</a></h3>
-<p>Ajánlott extensionök:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"><code>yzhang.markdown-all-in-one</code></a>: MD szinkronizált live preview</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint"><code>DavidAnson.vscode-markdownlint</code></a>: MD formázás, szabályok stb.</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a>: HTML+CSS formázó</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens">Error Lens</a>: Kiemeli a hibákat hogy gyorsabben megtaláljuk őket</li>
-</ul>
-<p>Az editor beállításához nyisd meg a repo-t a gyökerében VSCode-al. A VSCode fel fogja ajánlani a két markdown extension-t.</p>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../assets/vscode-recommended.png" data-desc-position="bottom"><img alt="VSCode recommended extensions" src="../assets/vscode-recommended.png"></a></p>
-</figure>
-<p>Ha ez megtörtént, nyiss meg egy markdown dokumentumot, és használd a <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> shortcutot, a command palette megnyitásához.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A command palette a VSCode parancsaihoz nyújt hozzáférést, autocompleteeli a parancsokat és egy minimális GUI-t is biztosít.</p>
-</div>
-<p>A command palette-be keressük meg a <code>Format Document With...</code> menüpontot és válasszuk ki.
-Ekkor egy almenübe dob az editor és kiválaszthatjuk hogy melyik formázóval formázzuk a MD dokumentumokat.
-Legalul lesz egy <code>Configure Default Formatter</code>, válasszuk ezt.
-Ezután válasszuk a <code>markdownlint</code> extensiont, és készen vagyunk.</p>
-<div class="admonition caution">
-<p class="admonition-title">Megfelelő formatter kiválasztása</p>
-<p>Ne válaszd ki a prettiert formatterként, mert eltöri a szövegbuborékokat.</p>
-</div>
-<p>Ezen felül érdemes lehet bekapcsolni a mentés előtti formázást.</p>
-<p>A <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-comma">,</kbd></span> shortcuttal megnyitjuk a beállításokat, és rákeresünk arra, hogy format on save.
-Itt kipipáljuk a checkboxot és készen vagyunk.</p>
-<p>Ha ehhez nem lenne türelmed, itt a json amit a <code>settings.json</code>-ba illesztve beállítódik minden.</p>
+<h2 id="architektura">Architektúra<a class="headerlink" href="#architektura" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>graph LR
+    PG[PostgreSQL&lt;br/&gt;WAL] --&gt; DBZ[Debezium&lt;br/&gt;Connect]
+    DBZ --&gt; K[Apache Kafka&lt;br/&gt;Topics]
+    K --&gt; C1[Python&lt;br/&gt;Consumer]
+    K --&gt; UI[kafka-ui&lt;br/&gt;Vizualizáció]</code></pre>
+<h2 id="inditas">Indítás<a class="headerlink" href="#inditas" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Docker környezet indítása</span>
+<span class="nb">cd</span><span class="w"> </span>week02/docker
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Debezium connector regisztrálás (opcionális, a notebookban is megtehető)</span>
+bash<span class="w"> </span>debezium/register-postgres-connector.sh
+
+<span class="c1"># Kafka UI megnyitása: http://localhost:8080</span>
+<span class="c1"># Jupyter notebook: http://localhost:8888 (token: bme2024)</span>
+</code></pre></div>
+<h2 id="a-demo-lepesei">A demó lépései<a class="headerlink" href="#a-demo-lepesei" title="Permanent link">¶</a></h2>
+<h3 id="1-debezium-connector-regisztralasa">1. Debezium Connector regisztrálása<a class="headerlink" href="#1-debezium-connector-regisztralasa" title="Permanent link">¶</a></h3>
+<p>A Debezium Kafka Connect REST API-ján keresztül regisztrálunk egy PostgreSQL connectort:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"[markdown]"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"editor.defaultFormatter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DavidAnson.vscode-markdownlint"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webshop-connector"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"connector.class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"io.debezium.connector.postgresql.PostgresConnector"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"database.hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postgres"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"database.dbname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webshop"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"topic.prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webshop"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"plugin.name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pgoutput"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"publication.name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbz_publication"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"table.include.list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.customers,public.orders,public.order_items,public.products"</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="ajanlasok">Ajánlások<a class="headerlink" href="#ajanlasok" title="Permanent link">¶</a></h2>
-<h3 id="android">Android<a class="headerlink" href="#android" title="Permanent link">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Connector kezelés</p>
 <ul>
-<li>Az androidos Kotlin és XML fileokat illetve kódrészleteket Android Studioban formázva érdemes hozzáadni az anyaghoz</li>
-<li>Ahhoz hogy biztosan formázva legyenek a fileok használd a <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-l">L</kbd></span> shortcutot</li>
+<li><strong>Státusz</strong>: <code>GET /connectors/webshop-connector/status</code></li>
+<li><strong>Törlés</strong>: <code>DELETE /connectors/webshop-connector</code></li>
+<li><strong>Összes</strong>: <code>GET /connectors</code></li>
 </ul>
-<h3 id="markdown-fileok">Markdown Fileok<a class="headerlink" href="#markdown-fileok" title="Permanent link">¶</a></h3>
+</div>
+<h3 id="2-valtozasok-vegrehajtasa">2. Változások végrehajtása<a class="headerlink" href="#2-valtozasok-vegrehajtasa" title="Permanent link">¶</a></h3>
+<p>A demóban végrehajtunk:</p>
+<table>
+<thead>
+<tr>
+<th>Művelet</th>
+<th>Tábla</th>
+<th>Leírás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INSERT</td>
+<td>customers</td>
+<td>Új ügyfél felvétele</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>customers</td>
+<td>Szegmens módosítás</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>orders</td>
+<td>Új rendelés</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>orders</td>
+<td>Státusz módosítás</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>orders</td>
+<td>Rendelés törlés</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-cdc-esemenyek-kafkaban">3. CDC események Kafkában<a class="headerlink" href="#3-cdc-esemenyek-kafkaban" title="Permanent link">¶</a></h3>
+<p>A Debezium minden változást Kafka topic-okba ír: <code>webshop.public.&lt;táblanév&gt;</code></p>
+<p>Egy tipikus CDC esemény struktúrája:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"before"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="nt">"segment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gold"</span><span class="p">,</span><span class="w"> </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Debrecen"</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"after"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="nt">"segment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"premium"</span><span class="p">,</span><span class="w"> </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Budapest"</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postgresql"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"db"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webshop"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"table"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customers"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"lsn"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"ts_ms"</span><span class="p">:</span><span class="w"> </span><span class="mi">1700000000000</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Műveletek kódjai</strong>:</p>
 <ul>
-<li>A markdown fileokat se az Android Studio se a Visual Studio Code nem rendereli alaphelyzetben.
-  Erre a feladatra a következő extensionöket/pluginokat tudom ajánlani:</li>
-<li>VSCode: <a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"><code>yzhang.markdown-all-in-one</code></a></li>
-<li>Android Studio: <a href="https://plugins.jetbrains.com/plugin/17254-markdown-editor">Markdown Editor</a></li>
+<li><code>c</code> = CREATE (INSERT)</li>
+<li><code>u</code> = UPDATE</li>
+<li><code>d</code> = DELETE</li>
+<li><code>r</code> = READ (snapshot)</li>
 </ul>
+<h3 id="4-python-kafka-consumer">4. Python Kafka Consumer<a class="headerlink" href="#4-python-kafka-consumer" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">confluent_kafka</span> <span class="kn">import</span> <span class="n">Consumer</span>
+
+<span class="n">consumer</span> <span class="o">=</span> <span class="n">Consumer</span><span class="p">({</span>
+    <span class="s1">'bootstrap.servers'</span><span class="p">:</span> <span class="s1">'kafka:9092'</span><span class="p">,</span>
+    <span class="s1">'group.id'</span><span class="p">:</span> <span class="s1">'demo1b-consumer'</span><span class="p">,</span>
+    <span class="s1">'auto.offset.reset'</span><span class="p">:</span> <span class="s1">'earliest'</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">consumer</span><span class="o">.</span><span class="n">subscribe</span><span class="p">([</span><span class="s1">'webshop.public.customers'</span><span class="p">,</span> <span class="s1">'webshop.public.orders'</span><span class="p">])</span>
+</code></pre></div>
+<p>A consumer feldolgozza a before/after állapotokat és kiírja a változásokat.</p>
+<h3 id="5-kafka-ui-vizualizacio">5. kafka-ui vizualizáció<a class="headerlink" href="#5-kafka-ui-vizualizacio" title="Permanent link">¶</a></h3>
+<p>A <a href="http://localhost:8080">kafka-ui</a> felületen vizuálisan áttekinthetők:</p>
+<ul>
+<li><strong>Topic-ok</strong>: webshop.public.customers, webshop.public.orders, stb.</li>
+<li><strong>Üzenetek</strong>: JSON tartalom a before/after állapotokkal</li>
+<li><strong>Consumer group-ok</strong>: offset és lag monitoring</li>
+</ul>
+<h2 id="debezium-vs-nativ-cdc-osszehasonlitas">Debezium vs Natív CDC összehasonlítás<a class="headerlink" href="#debezium-vs-nativ-cdc-osszehasonlitas" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Szempont</th>
+<th>Natív Python CDC</th>
+<th>Debezium + Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Komplexitás</td>
+<td>Egyszerű</td>
+<td>Közepesen összetett</td>
+</tr>
+<tr>
+<td>Megbízhatóság</td>
+<td>Saját implementáció</td>
+<td>Battle-tested</td>
+</tr>
+<tr>
+<td>Skálázhatóság</td>
+<td>Korlátozott</td>
+<td>Kafka-szintű</td>
+</tr>
+<tr>
+<td>Offset kezelés</td>
+<td>Manuális</td>
+<td>Automatikus</td>
+</tr>
+<tr>
+<td>Monitorozás</td>
+<td>Nincs beépített</td>
+<td>Kafka Connect metrics</td>
+</tr>
+<tr>
+<td>Üzemeltetés</td>
+<td>Minimális</td>
+<td>Kafka cluster szükséges</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kulcsfontossagu-tanulsagok">Kulcsfontosságú tanulságok<a class="headerlink" href="#kulcsfontossagu-tanulsagok" title="Permanent link">¶</a></h2>
+<ol>
+<li>A <strong>Debezium</strong> ipari szintű CDC megoldás, production-ready</li>
+<li>A <strong>Kafka</strong> mint köztes réteg biztosítja a megbízható kézbesítést</li>
+<li>A <strong>before/after</strong> állapotok lehetővé teszik a teljes változás-történet nyomon követését</li>
+<li>A <strong>Schema Registry</strong> gondoskodik a sémakompatibilitásról</li>
+<li>A <strong>kafka-ui</strong> kiváló eszköz a fejlesztés és hibakeresés során</li>
+</ol>
+<h2 id="kapcsolodo-notebook">Kapcsolódó notebook<a class="headerlink" href="#kapcsolodo-notebook" title="Permanent link">¶</a></h2>
+<p>A teljes futtatható kód a <code>demo1b-debezium-cdc.ipynb</code> Jupyter notebookban található.</p>
 
     <hr>
   <div class="md-source-file">
@@ -707,8 +914,8 @@ Itt kipipáljuk a checkboxot és készen vagyunk.</p>
           </path>
         </svg>
       </span>
-      <span title="2026. február 16. 15:11:31">
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. február 16. 15:11:31 CET"><span class="timeago" datetime="2026-02-16T15:11:31+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. február 16. 15:11:31 CET">2026-02-16</span>
+      <span title="2026. február 23. 16:17:00">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. február 23. 16:17:00 CET"><span class="timeago" datetime="2026-02-23T16:17:00+01:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. február 23. 16:17:00 CET">2026-02-23</span>
       </span>
     </span>
 
