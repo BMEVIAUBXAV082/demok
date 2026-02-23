@@ -85,7 +85,12 @@ plugins:
 
 nav:
   - "Kezdőlap": index.md
-  - "Demók":
-      - demok/1/index.md
-      - demok/2/index.md
+  - "1. EA":
+      - demok/1/d1.md
+      - demok/1/d2.md
+  - "2. EA":
+      - demok/2/d1a.md
+      - demok/2/d1b.md
+      - demok/2/d2.md
+      - demok/2/d3.md
 
