@@ -1,5 +1,7 @@
 # Demo 1b: CDC Debezium-mal és Kafkával
 
+**Notebook és scriptek**: [`github mappa`](https://github.com/BMEVIAUBXAV082/demok/tree/main/docs/demok/2/docker) 
+
 ## Áttekintés
 
 Ez a demó az ipari szintű CDC (Change Data Capture) megoldást mutatja be: **Debezium** PostgreSQL connector, **Apache Kafka** üzenetküldés, és Python consumer a változások feldolgozásához.

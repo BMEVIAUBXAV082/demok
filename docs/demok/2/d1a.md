@@ -1,5 +1,7 @@
 # Demo 1a: Forrásrendszerek feltárása és Python natív CDC
 
+**Notebook és scriptek**: [`github mappa`](https://github.com/BMEVIAUBXAV082/demok/tree/main/docs/demok/2/docker) 
+
 ## Áttekintés
 
 Ez a demó bemutatja, hogyan térképezzük fel egy PostgreSQL forrásrendszert mérnöki szempontból, és hogyan valósítunk meg natív Python CDC-t (Change Data Capture) a WAL (Write-Ahead Log) logical replication segítségével.
