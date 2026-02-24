@@ -1,107 +1,129 @@
--- BME Data Engineering - 1. hét: Mintaadatok (magyar nevek és városok)
+-- BME Data Engineering – Week 02: Mintaadatok
+-- ~500 sor e-commerce adat
 
--- Ügyfelek
-INSERT INTO customers (name, email, city, balance) VALUES
-('Nagy Péter', 'nagy.peter@example.hu', 'Budapest', 150000),
-('Kovács Anna', 'kovacs.anna@example.hu', 'Budapest', 85000),
-('Szabó István', 'szabo.istvan@example.hu', 'Debrecen', 220000),
-('Tóth Katalin', 'toth.katalin@example.hu', 'Szeged', 45000),
-('Horváth László', 'horvath.laszlo@example.hu', 'Pécs', 310000),
-('Kiss Mária', 'kiss.maria@example.hu', 'Budapest', 67000),
-('Varga Zoltán', 'varga.zoltan@example.hu', 'Győr', 125000),
-('Molnár Éva', 'molnar.eva@example.hu', 'Miskolc', 93000),
-('Németh Gábor', 'nemeth.gabor@example.hu', 'Budapest', 178000),
-('Farkas Judit', 'farkas.judit@example.hu', 'Székesfehérvár', 56000),
-('Balogh Tamás', 'balogh.tamas@example.hu', 'Nyíregyháza', 201000),
-('Papp Eszter', 'papp.eszter@example.hu', 'Budapest', 144000),
-('Takács Béla', 'takacs.bela@example.hu', 'Kecskemét', 89000),
-('Juhász Csaba', 'juhasz.csaba@example.hu', 'Debrecen', 167000),
-('Lakatos Dóra', 'lakatos.dora@example.hu', 'Budapest', 72000),
-('Simon András', 'simon.andras@example.hu', 'Szeged', 115000),
-('Fekete Réka', 'fekete.reka@example.hu', 'Győr', 198000),
-('Szilágyi Márton', 'szilagyi.marton@example.hu', 'Budapest', 243000),
-('Oláh Viktória', 'olah.viktoria@example.hu', 'Pécs', 31000),
-('Vincze Attila', 'vincze.attila@example.hu', 'Miskolc', 87000);
+-- ── Ügyfelek (30 fő) ───────────────────────────────────────────
+INSERT INTO customers (name, email, city, segment) VALUES
+('Kovács Anna', 'kovacs.anna@example.com', 'Budapest', 'premium'),
+('Nagy Péter', 'nagy.peter@example.com', 'Debrecen', 'standard'),
+('Szabó Katalin', 'szabo.katalin@example.com', 'Szeged', 'premium'),
+('Tóth László', 'toth.laszlo@example.com', 'Pécs', 'standard'),
+('Horváth Gábor', 'horvath.gabor@example.com', 'Győr', 'standard'),
+('Varga Éva', 'varga.eva@example.com', 'Budapest', 'premium'),
+('Kiss Márton', 'kiss.marton@example.com', 'Miskolc', 'standard'),
+('Molnár Zsófia', 'molnar.zsofia@example.com', 'Budapest', 'gold'),
+('Németh Balázs', 'nemeth.balazs@example.com', 'Debrecen', 'standard'),
+('Farkas Judit', 'farkas.judit@example.com', 'Szeged', 'standard'),
+('Balogh Tamás', 'balogh.tamas@example.com', 'Pécs', 'premium'),
+('Papp Ildikó', 'papp.ildiko@example.com', 'Győr', 'standard'),
+('Takács Dávid', 'takacs.david@example.com', 'Budapest', 'standard'),
+('Juhász Réka', 'juhasz.reka@example.com', 'Kecskemét', 'standard'),
+('Lakatos Ferenc', 'lakatos.ferenc@example.com', 'Nyíregyháza', 'gold'),
+('Simon Orsolya', 'simon.orsolya@example.com', 'Budapest', 'premium'),
+('Oláh András', 'olah.andras@example.com', 'Székesfehérvár', 'standard'),
+('Fekete Noémi', 'fekete.noemi@example.com', 'Eger', 'standard'),
+('Szűcs Krisztián', 'szucs.krisztian@example.com', 'Budapest', 'standard'),
+('Mészáros Boglárka', 'meszaros.boglarka@example.com', 'Debrecen', 'premium'),
+('Pintér Gergő', 'pinter.gergo@example.com', 'Veszprém', 'standard'),
+('Török Anita', 'torok.anita@example.com', 'Budapest', 'standard'),
+('Vincze Levente', 'vincze.levente@example.com', 'Miskolc', 'standard'),
+('Hegedűs Emese', 'hegedus.emese@example.com', 'Szeged', 'gold'),
+('Kocsis Norbert', 'kocsis.norbert@example.com', 'Pécs', 'standard'),
+('Szilágyi Dóra', 'szilagyi.dora@example.com', 'Budapest', 'premium'),
+('Hajdu Bence', 'hajdu.bence@example.com', 'Debrecen', 'standard'),
+('Gál Vivien', 'gal.vivien@example.com', 'Győr', 'standard'),
+('Antal Zoltán', 'antal.zoltan@example.com', 'Budapest', 'standard'),
+('Kelemen Lilla', 'kelemen.lilla@example.com', 'Szeged', 'premium');
 
--- Termékek
-INSERT INTO products (name, category, price) VALUES
-('Laptop Lenovo ThinkPad', 'Elektronika', 349990),
-('Samsung Galaxy S24', 'Elektronika', 279990),
-('Sony WH-1000XM5 fejhallgató', 'Elektronika', 119990),
-('Irodai forgószék', 'Bútor', 49990),
-('Álló íróasztal', 'Bútor', 89990),
-('27" Monitor Dell', 'Elektronika', 129990),
-('Mechanikus billentyűzet', 'Kiegészítő', 24990),
-('USB-C Hub', 'Kiegészítő', 12990),
-('Webkamera Logitech', 'Elektronika', 29990),
-('Egérpad XXL', 'Kiegészítő', 4990),
-('Python programozás könyv', 'Könyv', 7990),
-('Data Engineering könyv', 'Könyv', 14990),
-('Raspberry Pi 5 Kit', 'Elektronika', 34990),
-('Külső SSD 1TB', 'Tárhely', 24990),
-('NAS Synology 2-bay', 'Tárhely', 89990);
+-- ── Termékek (25 tétel) ─────────────────────────────────────────
+INSERT INTO products (name, category, price, stock) VALUES
+('Laptop ASUS VivoBook 15', 'Elektronika', 249990, 45),
+('Samsung Galaxy S24', 'Mobiltelefon', 349990, 120),
+('Sony WH-1000XM5 fejhallgató', 'Audio', 129990, 80),
+('Logitech MX Master 3S egér', 'Periféria', 39990, 200),
+('Dell UltraSharp 27" monitor', 'Monitor', 189990, 30),
+('Apple iPad Air 2024', 'Tablet', 279990, 55),
+('Kindle Paperwhite', 'E-könyvolvasó', 49990, 150),
+('JBL Charge 5 hangszóró', 'Audio', 44990, 90),
+('Razer BlackWidow V4 billentyűzet', 'Periféria', 54990, 60),
+('TP-Link Archer AX73 router', 'Hálózat', 29990, 100),
+('WD Elements 2TB külső HDD', 'Tárhely', 24990, 180),
+('Samsung 970 EVO Plus 1TB SSD', 'Tárhely', 39990, 120),
+('Xiaomi Mi Band 8', 'Viselhető', 14990, 300),
+('Canon EOS R50 fényképezőgép', 'Fotó', 299990, 20),
+('Anker PowerCore 20000 powerbank', 'Kiegészítő', 12990, 250),
+('Philips Hue Starter Kit', 'Okosotthon', 34990, 70),
+('iRobot Roomba i3+', 'Háztartás', 159990, 25),
+('Dyson V12 porszívó', 'Háztartás', 219990, 15),
+('Nintendo Switch OLED', 'Játék', 129990, 40),
+('PlayStation 5 DualSense kontroller', 'Játék', 24990, 110),
+('Bosch Serie 6 mosogatógép', 'Háztartás', 189990, 10),
+('LG OLED C3 55" TV', 'TV', 499990, 18),
+('Bose QuietComfort Ultra', 'Audio', 149990, 50),
+('Garmin Venu 3 okosóra', 'Viselhető', 149990, 35),
+('Raspberry Pi 5 8GB', 'Elektronika', 29990, 200);
 
--- Rendelések és tételek
-INSERT INTO orders (customer_id, order_date, status) VALUES
-(1, '2024-01-15 10:30:00', 'completed'),
-(2, '2024-01-16 14:22:00', 'completed'),
-(3, '2024-01-17 09:15:00', 'shipped'),
-(1, '2024-01-18 16:45:00', 'completed'),
-(4, '2024-01-19 11:00:00', 'pending'),
-(5, '2024-01-20 08:30:00', 'completed'),
-(6, '2024-01-21 13:10:00', 'shipped'),
-(7, '2024-01-22 17:55:00', 'completed'),
-(8, '2024-01-23 10:20:00', 'pending'),
-(9, '2024-01-24 15:30:00', 'completed'),
-(10, '2024-01-25 09:45:00', 'shipped'),
-(2, '2024-01-26 12:00:00', 'completed'),
-(3, '2024-01-27 14:30:00', 'completed'),
-(11, '2024-01-28 11:15:00', 'pending'),
-(12, '2024-01-29 16:20:00', 'completed'),
-(13, '2024-02-01 08:00:00', 'shipped'),
-(14, '2024-02-02 10:45:00', 'completed'),
-(15, '2024-02-03 13:30:00', 'completed'),
-(16, '2024-02-04 09:00:00', 'pending'),
-(17, '2024-02-05 15:15:00', 'completed'),
-(18, '2024-02-06 11:45:00', 'shipped'),
-(19, '2024-02-07 14:00:00', 'completed'),
-(20, '2024-02-08 10:30:00', 'pending'),
-(1, '2024-02-09 16:00:00', 'completed'),
-(5, '2024-02-10 08:45:00', 'shipped'),
-(6, '2024-02-11 12:30:00', 'completed'),
-(9, '2024-02-12 15:00:00', 'completed'),
-(12, '2024-02-13 09:30:00', 'pending'),
-(15, '2024-02-14 11:00:00', 'completed'),
-(18, '2024-02-15 14:45:00', 'shipped');
+-- ── Rendelések (100 db, elmúlt 90 nap) ─────────────────────────
+DO $$
+DECLARE
+    i INTEGER;
+    cust_id INTEGER;
+    ord_date TIMESTAMP;
+    ord_status VARCHAR(30);
+    statuses VARCHAR(30)[] := ARRAY['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'];
+BEGIN
+    FOR i IN 1..100 LOOP
+        cust_id := (i % 30) + 1;
+        ord_date := now() - (random() * 90)::INTEGER * INTERVAL '1 day' - (random() * 24)::INTEGER * INTERVAL '1 hour';
+        ord_status := statuses[1 + (random() * 4)::INTEGER];
 
-INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
-(1, 1, 1, 349990), (1, 7, 1, 24990),
-(2, 3, 1, 119990), (2, 10, 2, 4990),
-(3, 2, 1, 279990),
-(4, 11, 2, 7990), (4, 12, 1, 14990),
-(5, 4, 1, 49990), (5, 5, 1, 89990),
-(6, 6, 2, 129990), (6, 8, 1, 12990),
-(7, 9, 1, 29990), (7, 7, 1, 24990),
-(8, 14, 2, 24990), (8, 13, 1, 34990),
-(9, 1, 1, 349990), (9, 6, 1, 129990),
-(10, 15, 1, 89990),
-(11, 2, 1, 279990), (11, 3, 1, 119990),
-(12, 11, 3, 7990), (12, 12, 2, 14990),
-(13, 5, 1, 89990), (13, 4, 2, 49990),
-(14, 8, 3, 12990), (14, 10, 5, 4990),
-(15, 1, 1, 349990), (15, 9, 1, 29990),
-(16, 13, 2, 34990), (16, 14, 1, 24990),
-(17, 6, 1, 129990), (17, 7, 2, 24990),
-(18, 3, 1, 119990),
-(19, 15, 1, 89990), (19, 8, 2, 12990),
-(20, 2, 1, 279990), (20, 10, 3, 4990),
-(21, 11, 1, 7990), (21, 12, 1, 14990),
-(22, 4, 1, 49990),
-(23, 9, 2, 29990), (23, 7, 1, 24990),
-(24, 14, 1, 24990), (24, 13, 1, 34990),
-(25, 1, 1, 349990), (25, 6, 1, 129990),
-(26, 3, 2, 119990),
-(27, 5, 1, 89990), (27, 8, 1, 12990),
-(28, 2, 1, 279990),
-(29, 15, 1, 89990), (29, 14, 2, 24990),
-(30, 11, 2, 7990), (30, 12, 1, 14990);
+        INSERT INTO orders (customer_id, order_date, status, total_amount, shipping_city)
+        SELECT cust_id, ord_date, ord_status, 0, c.city
+        FROM customers c WHERE c.customer_id = cust_id;
+    END LOOP;
+END $$;
+
+-- ── Rendeléstételek (1-3 tétel rendelésenként, ~250 sor) ───────
+DO $$
+DECLARE
+    ord RECORD;
+    num_items INTEGER;
+    j INTEGER;
+    prod_id INTEGER;
+    qty INTEGER;
+    uprice NUMERIC;
+    ord_total NUMERIC;
+BEGIN
+    FOR ord IN SELECT order_id FROM orders LOOP
+        num_items := 1 + (random() * 2)::INTEGER;
+        ord_total := 0;
+        FOR j IN 1..num_items LOOP
+            prod_id := 1 + (random() * 24)::INTEGER;
+            qty := 1 + (random() * 2)::INTEGER;
+            SELECT price INTO uprice FROM products WHERE products.product_id = prod_id;
+            INSERT INTO order_items (order_id, product_id, quantity, unit_price)
+            VALUES (ord.order_id, prod_id, qty, uprice);
+            ord_total := ord_total + (uprice * qty);
+        END LOOP;
+        UPDATE orders SET total_amount = ord_total WHERE orders.order_id = ord.order_id;
+    END LOOP;
+END $$;
+
+-- ── Események (append-only log, ~100 esemény) ──────────────────
+DO $$
+DECLARE
+    ord RECORD;
+    evt_types VARCHAR(50)[] := ARRAY['order_created', 'payment_received', 'item_shipped', 'item_delivered'];
+    evt_type VARCHAR(50);
+BEGIN
+    FOR ord IN SELECT order_id, customer_id, order_date, status FROM orders LIMIT 80 LOOP
+        evt_type := evt_types[1 + (random() * 3)::INTEGER];
+        INSERT INTO events (event_type, entity_type, entity_id, payload, created_at)
+        VALUES (
+            evt_type,
+            'order',
+            ord.order_id,
+            json_build_object('customer_id', ord.customer_id, 'status', ord.status)::jsonb,
+            ord.order_date + (random() * 60)::INTEGER * INTERVAL '1 minute'
+        );
+    END LOOP;
+END $$;
