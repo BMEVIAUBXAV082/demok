@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: week04-postgres
+    environment:
+      POSTGRES_USER: dataeng
+      POSTGRES_PASSWORD: dataeng
+      POSTGRES_DB: demo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dataeng -d demo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: week04-jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_TOKEN: "demo"
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
