@@ -1,0 +1,1480 @@
+<!DOCTYPE html><html lang="hu" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Pomázi Krisztián">
+      
+      
+      
+        <link rel="prev" href="../d2/">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
+    
+    
+      
+        <title>Demo 3: Dagster – asset graph és materializáció - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#demo-3-dagster-asset-graph-es-materializacio" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" class="md-header__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Demo 3: Dagster – asset graph és materializáció
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red" aria-label="Váltás sötét témára" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden="">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"></path></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="" aria-label="Váltás világos témára" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden="">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"></path></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Keresés">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bmeviaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubxav082/demok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Kezdőlap
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../1/d1/" class="md-tabs__link">
+        1. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../2/d1a/" class="md-tabs__link">
+        2. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../3/d1/" class="md-tabs__link">
+        3. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../4/" class="md-tabs__link">
+        4. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../d1/" class="md-tabs__link md-tabs__link--active">
+        5. EA
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" class="md-nav__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bmeviaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubxav082/demok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Kezdőlap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1/d1/" class="md-nav__link">
+        Demo 1: Teljes Data Engineering Pipeline Python-ban
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1/d2/" class="md-nav__link">
+        Demo 2: Modern Data Engineering Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d1a/" class="md-nav__link">
+        Demo 1a: Forrásrendszerek feltárása és Python natív CDC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d1b/" class="md-nav__link">
+        Demo 1b: CDC Debezium-mal és Kafkával
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d2/" class="md-nav__link">
+        Demo 2: Batch ETL/ELT pipeline DuckDB-vel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d3/" class="md-nav__link">
+        Demo 3: Kafka Streaming Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d1/" class="md-nav__link">
+        Demo 1: PostgreSQL deep-dive
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d2/" class="md-nav__link">
+        Demo 2: MongoDB + Redis panorama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d3/" class="md-nav__link">
+        Demo 3: Neo4j – gráf adatbázis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d4/" class="md-nav__link">
+        Demo 4: MinIO + DuckDB – Object Storage &amp; Data Lake
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4/" class="md-nav__link">
+        4. Előadás demók
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked="">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          5. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d1/" class="md-nav__link">
+        Demo 1: Apache Airflow – az első DAG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d2/" class="md-nav__link">
+        Demo 2: Prefect – Python-first orchestration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demo 3: Dagster – asset graph és materializáció
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Demo 3: Dagster – asset graph és materializáció
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-centric-vs-asset-centric-szemlelet" class="md-nav__link">
+    Task-centric vs asset-centric szemlélet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architektura" class="md-nav__link">
+    Architektúra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asset-definiciok" class="md-nav__link">
+    Asset definíciók
+  </a>
+  
+    <nav class="md-nav" aria-label="Asset definíciók">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-harom-asset-az-analitikai-pipeline" class="md-nav__link">
+    1. Három @asset – az analitikai pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-definitions-osszerakas" class="md-nav__link">
+    2. Definitions – összerakás
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materializacio-az-asset-eloallitasa" class="md-nav__link">
+    Materializáció – az asset előállítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Materializáció – az asset előállítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-materialize-kodbol" class="md-nav__link">
+    3. materialize() – kódból
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-policy-mikor-elavult-egy-asset" class="md-nav__link">
+    Freshness Policy – mikor "elavult" egy asset?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-esemeny-alapu-materializacio" class="md-nav__link">
+    Sensor – esemény-alapú materializáció
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensor – esemény-alapú materializáció">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-sensor-uj-fajl-megjelenesekor" class="md-nav__link">
+    4. Sensor: új fájl megjelenésekor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mikor-valasszuk-a-dagster-t" class="md-nav__link">
+    Mikor válasszuk a Dagster-t?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-centric-vs-asset-centric-szemlelet" class="md-nav__link">
+    Task-centric vs asset-centric szemlélet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architektura" class="md-nav__link">
+    Architektúra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asset-definiciok" class="md-nav__link">
+    Asset definíciók
+  </a>
+  
+    <nav class="md-nav" aria-label="Asset definíciók">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-harom-asset-az-analitikai-pipeline" class="md-nav__link">
+    1. Három @asset – az analitikai pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-definitions-osszerakas" class="md-nav__link">
+    2. Definitions – összerakás
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#materializacio-az-asset-eloallitasa" class="md-nav__link">
+    Materializáció – az asset előállítása
+  </a>
+  
+    <nav class="md-nav" aria-label="Materializáció – az asset előállítása">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-materialize-kodbol" class="md-nav__link">
+    3. materialize() – kódból
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-policy-mikor-elavult-egy-asset" class="md-nav__link">
+    Freshness Policy – mikor "elavult" egy asset?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-esemeny-alapu-materializacio" class="md-nav__link">
+    Sensor – esemény-alapú materializáció
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensor – esemény-alapú materializáció">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-sensor-uj-fajl-megjelenesekor" class="md-nav__link">
+    4. Sensor: új fájl megjelenésekor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mikor-valasszuk-a-dagster-t" class="md-nav__link">
+    Mikor válasszuk a Dagster-t?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="demo-3-dagster-asset-graph-es-materializacio">Demo 3: Dagster – asset graph és materializáció<a class="headerlink" href="#demo-3-dagster-asset-graph-es-materializacio" title="Permanent link">¶</a></h1>
+<h2 id="attekintes">Áttekintés<a class="headerlink" href="#attekintes" title="Permanent link">¶</a></h2>
+<p>Ez a demó bemutatja a Dagster asset-alapú orchestration megközelítését. Három Software-Defined Asset-et definiálunk egy analitikai pipeline-hoz: <code>raw_orders → cleaned_orders → daily_revenue</code>. A Dagit UI-ban vizualizáljuk az asset gráfot, beállítunk Freshness Policy-t, és bemutatjuk a Resource absztrakciót.</p>
+<div class="admonition info">
+<p class="admonition-title">Előfeltételek</p>
+<p>Python 3.11+, <code>pip install dagster dagster-webserver duckdb</code>. Notebook: <code>demo3-dagster.ipynb</code>. Dagit UI: <strong><a href="http://localhost:3000">http://localhost:3000</a></strong>.</p>
+</div>
+<h2 id="task-centric-vs-asset-centric-szemlelet">Task-centric vs asset-centric szemlélet<a class="headerlink" href="#task-centric-vs-asset-centric-szemlelet" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Szemlélet</th>
+<th>Eszköz</th>
+<th>Kérdés</th>
+<th>Analógia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task-centric</td>
+<td>Airflow, Prefect</td>
+<td>Mit csináljunk?</td>
+<td>Gyártósor – utasítások sorozata</td>
+</tr>
+<tr>
+<td>Asset-centric</td>
+<td>Dagster</td>
+<td>Mit hozzunk létre?</td>
+<td>Raktárrendszer – adatobjektumok</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Példa ugyanarra a pipeline-ra:</strong></p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">Task-centric (Airflow)</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="n">extract</span> <span class="o">&gt;&gt;</span> <span class="n">clean</span> <span class="o">&gt;&gt;</span> <span class="n">aggregate</span>   <span class="c1"># utasítások sorrendje a fő</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Asset-centric (Dagster)</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nd">@asset</span>                          <span class="c1"># "mi keletkezik?" a fő</span>
+<span class="k">def</span> <span class="nf">raw_orders</span><span class="p">():</span> <span class="o">...</span>
+
+<span class="nd">@asset</span>                          <span class="c1"># automatikusan tudja: raw_orders kell hozzá</span>
+<span class="k">def</span> <span class="nf">cleaned_orders</span><span class="p">(</span><span class="n">raw_orders</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+</div>
+</div>
+<h2 id="architektura">Architektúra<a class="headerlink" href="#architektura" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>graph LR
+    SRC["Forrás\n(szimulált API)"]
+    RAW["raw_orders\n@asset"]
+    CLEAN["cleaned_orders\n@asset"]
+    DAILY["daily_revenue\n@asset"]
+    DUCK[(DuckDB\nin-memory)]
+    DAGIT["Dagit UI\nhttp://localhost:3000"]
+
+    SRC --&gt;|betöltés| RAW
+    RAW --&gt;|tisztítás| CLEAN
+    CLEAN --&gt;|aggregáció| DAILY
+    RAW --&gt; DUCK
+    CLEAN --&gt; DUCK
+    DAILY --&gt; DUCK
+    DAGIT --&gt;|materializáció| RAW
+    DAGIT --&gt;|lineage| DAILY</code></pre>
+<h2 id="asset-definiciok">Asset definíciók<a class="headerlink" href="#asset-definiciok" title="Permanent link">¶</a></h2>
+<h3 id="1-harom-asset-az-analitikai-pipeline">1. Három @asset – az analitikai pipeline<a class="headerlink" href="#1-harom-asset-az-analitikai-pipeline" title="Permanent link">¶</a></h3>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">assets.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">duckdb</span><span class="o">,</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">asset</span><span class="p">,</span> <span class="n">AssetIn</span><span class="p">,</span> <span class="n">FreshnessPolicy</span><span class="p">,</span> <span class="n">ConfigurableResource</span><span class="p">,</span>
+    <span class="n">materialize</span><span class="p">,</span> <span class="n">Definitions</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">MetadataValue</span>
+<span class="p">)</span>
+
+<span class="c1"># Resource: DuckDB kapcsolat – nem importálunk direkt, hanem dependency injection</span>
+<span class="k">class</span> <span class="nc">DuckDBResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Konfigurálható DuckDB kapcsolat.</span>
+<span class="sd">    Fejlesztésben: database=':memory:', prod-ban: database='/data/orders.duckdb'"""</span>
+    <span class="n">database</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">":memory:"</span>
+
+    <span class="k">def</span> <span class="nf">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span>
+
+
+<span class="nd">@asset</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Nyers rendelési adatok"</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s2">"layer"</span><span class="p">:</span> <span class="s2">"bronze"</span><span class="p">})</span>
+<span class="k">def</span> <span class="nf">raw_orders</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">duckdb_resource</span><span class="p">:</span> <span class="n">DuckDBResource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">duckdb_resource</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"amount"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50000</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+             <span class="s2">"date"</span><span class="p">:</span> <span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span> <span class="o">%</span> <span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()}</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">201</span><span class="p">)]</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS raw_orders"</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE TABLE raw_orders AS SELECT * FROM rows"</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(*) FROM raw_orders"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"raw_orders: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> sor betöltve"</span><span class="p">)</span>
+
+
+<span class="nd">@asset</span><span class="p">(</span>
+    <span class="n">ins</span><span class="o">=</span><span class="p">{</span><span class="s2">"raw_orders"</span><span class="p">:</span> <span class="n">AssetIn</span><span class="p">()},</span>     <span class="c1"># explicit upstream: raw_orders kell</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Tisztított adatok"</span><span class="p">,</span>
+    <span class="n">freshness_policy</span><span class="o">=</span><span class="n">FreshnessPolicy</span><span class="p">(</span><span class="n">maximum_lag_minutes</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">),</span>  <span class="c1"># max 24h</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">cleaned_orders</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">raw_orders</span><span class="p">,</span> <span class="n">duckdb_resource</span><span class="p">:</span> <span class="n">DuckDBResource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">duckdb_resource</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS cleaned_orders"</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">        CREATE TABLE cleaned_orders AS</span>
+<span class="s2">        SELECT order_id, customer_id, amount, status, CAST(order_date AS DATE) AS order_date</span>
+<span class="s2">        FROM raw_orders</span>
+<span class="s2">        WHERE amount &gt; 0 AND status IS NOT NULL AND status != 'cancelled'</span>
+<span class="s2">    """</span><span class="p">)</span>
+    <span class="n">raw_c</span>   <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(*) FROM raw_orders"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">clean_c</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(*) FROM cleaned_orders"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">add_output_metadata</span><span class="p">({</span>       <span class="c1"># metadata: Dagit UI-ban látható</span>
+        <span class="s2">"raw_count"</span><span class="p">:</span>    <span class="n">MetadataValue</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">raw_c</span><span class="p">),</span>
+        <span class="s2">"clean_count"</span><span class="p">:</span>  <span class="n">MetadataValue</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">clean_c</span><span class="p">),</span>
+        <span class="s2">"filtered_pct"</span><span class="p">:</span> <span class="n">MetadataValue</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">raw_c</span> <span class="o">-</span> <span class="n">clean_c</span><span class="p">)</span> <span class="o">/</span> <span class="n">raw_c</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">})</span>
+
+
+<span class="nd">@asset</span><span class="p">(</span>
+    <span class="n">ins</span><span class="o">=</span><span class="p">{</span><span class="s2">"cleaned_orders"</span><span class="p">:</span> <span class="n">AssetIn</span><span class="p">()},</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Napi bevétel aggregáció"</span><span class="p">,</span>
+    <span class="n">freshness_policy</span><span class="o">=</span><span class="n">FreshnessPolicy</span><span class="p">(</span><span class="n">maximum_lag_minutes</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">daily_revenue</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cleaned_orders</span><span class="p">,</span> <span class="n">duckdb_resource</span><span class="p">:</span> <span class="n">DuckDBResource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">duckdb_resource</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"DROP TABLE IF EXISTS daily_revenue"</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">        CREATE TABLE daily_revenue AS</span>
+<span class="s2">        SELECT order_date, COUNT(*) AS order_count, SUM(amount) AS total_revenue</span>
+<span class="s2">        FROM cleaned_orders</span>
+<span class="s2">        GROUP BY order_date ORDER BY order_date DESC</span>
+<span class="s2">    """</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(*), SUM(total_revenue) FROM daily_revenue"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"daily_revenue: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> nap, </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> Ft"</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">add_output_metadata</span><span class="p">({</span>
+        <span class="s2">"days_covered"</span><span class="p">:</span>  <span class="n">MetadataValue</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="s2">"total_revenue"</span><span class="p">:</span> <span class="n">MetadataValue</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span>
+    <span class="p">})</span>
+</code></pre></div></td></tr></tbody></table></div>
+<div class="admonition note">
+<p class="admonition-title">Miért Resource és nem direkt import?</p>
+<p>A <code>DuckDBResource</code> dependency injection lehetővé teszi, hogy tesztekben <code>database=':memory:'</code>, production-ban <code>database='/data/prod.duckdb'</code> legyen – ugyanaz az asset kód mindkét esetben.</p>
+</div>
+<h3 id="2-definitions-osszerakas">2. Definitions – összerakás<a class="headerlink" href="#2-definitions-osszerakas" title="Permanent link">¶</a></h3>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">definitions.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="n">Definitions</span>
+<span class="kn">from</span> <span class="nn">assets</span> <span class="kn">import</span> <span class="n">raw_orders</span><span class="p">,</span> <span class="n">cleaned_orders</span><span class="p">,</span> <span class="n">daily_revenue</span><span class="p">,</span> <span class="n">DuckDBResource</span>
+
+<span class="n">defs</span> <span class="o">=</span> <span class="n">Definitions</span><span class="p">(</span>
+    <span class="n">assets</span><span class="o">=</span><span class="p">[</span><span class="n">raw_orders</span><span class="p">,</span> <span class="n">cleaned_orders</span><span class="p">,</span> <span class="n">daily_revenue</span><span class="p">],</span>
+    <span class="n">resources</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"duckdb_resource"</span><span class="p">:</span> <span class="n">DuckDBResource</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">":memory:"</span><span class="p">),</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></tbody></table></div>
+<div class="highlight"><pre><span></span><code>dagster<span class="w"> </span>dev<span class="w"> </span>-f<span class="w"> </span>definitions.py
+<span class="c1"># → http://localhost:3000</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Várt eredmény</p>
+<p>A Dagit Asset Catalog-ban megjelenik a három asset és a gráf: <code>raw_orders → cleaned_orders → daily_revenue</code>. A gráf automatikusan épül fel az <code>AssetIn</code> deklarációkból.</p>
+</div>
+<h2 id="materializacio-az-asset-eloallitasa">Materializáció – az asset előállítása<a class="headerlink" href="#materializacio-az-asset-eloallitasa" title="Permanent link">¶</a></h2>
+<h3 id="3-materialize-kodbol">3. materialize() – kódból<a class="headerlink" href="#3-materialize-kodbol" title="Permanent link">¶</a></h3>
+<div class="highlight"><span class="filename">materialize_demo.py</span><pre><span></span><code><span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="n">materialize</span>
+<span class="kn">from</span> <span class="nn">assets</span> <span class="kn">import</span> <span class="n">raw_orders</span><span class="p">,</span> <span class="n">cleaned_orders</span><span class="p">,</span> <span class="n">daily_revenue</span><span class="p">,</span> <span class="n">DuckDBResource</span>
+
+<span class="c1"># Összes asset materializálása – sorrendben, a gráf alapján</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">materialize</span><span class="p">(</span>
+    <span class="n">assets</span><span class="o">=</span><span class="p">[</span><span class="n">raw_orders</span><span class="p">,</span> <span class="n">cleaned_orders</span><span class="p">,</span> <span class="n">daily_revenue</span><span class="p">],</span>
+    <span class="n">resources</span><span class="o">=</span><span class="p">{</span><span class="s2">"duckdb_resource"</span><span class="p">:</span> <span class="n">DuckDBResource</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">":memory:"</span><span class="p">)},</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Materializáció sikeres: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Módszer</th>
+<th>Leírás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dagit UI → Materialize</td>
+<td>Kézzel, böngészőből</td>
+</tr>
+<tr>
+<td><code>materialize()</code></td>
+<td>Python szkriptből, teszteléshez</td>
+</tr>
+<tr>
+<td>Sensor</td>
+<td>Esemény-alapú (pl. fájl megjelenésekor)</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>Ütemezve (pl. napi 06:00)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Materializáció vs task futtatás</p>
+<p>Airflow-ban <code>trigger DAG</code> = futtasd le a taskokat. Dagsterben <code>materialize</code> = hozd létre/frissítsd az asset adatait. A különbség: Dagster tudja, mikor "elavult" egy asset (FreshnessPolicy alapján).</p>
+</div>
+<h2 id="freshness-policy-mikor-elavult-egy-asset">Freshness Policy – mikor "elavult" egy asset?<a class="headerlink" href="#freshness-policy-mikor-elavult-egy-asset" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@asset</span><span class="p">(</span>
+    <span class="n">freshness_policy</span><span class="o">=</span><span class="n">FreshnessPolicy</span><span class="p">(</span>
+        <span class="n">maximum_lag_minutes</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">,</span>   <span class="c1"># max 24 óra lehet régi</span>
+        <span class="n">cron_schedule</span><span class="o">=</span><span class="s2">"0 6 * * *"</span><span class="p">,</span>     <span class="c1"># reggel 6-ra el kell készülni</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">daily_revenue</span><span class="p">(</span><span class="o">...</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<p>Ha az asset utolsó materializálása több mint 24 óra régi → Dagit <code>stale</code> jelzéssel mutatja.</p>
+<h2 id="sensor-esemeny-alapu-materializacio">Sensor – esemény-alapú materializáció<a class="headerlink" href="#sensor-esemeny-alapu-materializacio" title="Permanent link">¶</a></h2>
+<h3 id="4-sensor-uj-fajl-megjelenesekor">4. Sensor: új fájl megjelenésekor<a class="headerlink" href="#4-sensor-uj-fajl-megjelenesekor" title="Permanent link">¶</a></h3>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">sensors.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dagster</span> <span class="kn">import</span> <span class="n">sensor</span><span class="p">,</span> <span class="n">RunRequest</span><span class="p">,</span> <span class="n">SensorEvaluationContext</span><span class="p">,</span> <span class="n">AssetSelection</span>
+
+<span class="n">WATCH_DIR</span> <span class="o">=</span> <span class="s2">"/tmp/incoming_orders"</span>
+
+<span class="nd">@sensor</span><span class="p">(</span>
+    <span class="n">asset_selection</span><span class="o">=</span><span class="n">AssetSelection</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+    <span class="n">minimum_interval_seconds</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>           <span class="c1"># 30 másodpercenként ellenőriz</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">new_file_sensor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">SensorEvaluationContext</span><span class="p">):</span>
+    <span class="n">last_check</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">or</span> <span class="s2">"0"</span><span class="p">)</span>
+    <span class="n">new_files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">WATCH_DIR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".csv"</span><span class="p">)</span> <span class="ow">and</span>
+           <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">WATCH_DIR</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">last_check</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">new_files</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update_cursor</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">WATCH_DIR</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">new_files</span>
+        <span class="p">)))</span>
+        <span class="k">yield</span> <span class="n">RunRequest</span><span class="p">(</span><span class="n">run_key</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">new_files</span><span class="p">))</span>
+</code></pre></div></td></tr></tbody></table></div>
+<h2 id="mikor-valasszuk-a-dagster-t">Mikor válasszuk a Dagster-t?<a class="headerlink" href="#mikor-valasszuk-a-dagster-t" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code>Az adatminőség és megfigyelhetőség elsődleges?
+├── IGEN → Dagster (asset catalog, metadata, freshness)
+│   ├── dbt integráció kell → Dagster (natív dbt-dagster csomag)
+│   ├── Adatplatform-szerű gondolkozás → Dagster
+│   └── Compliance, lineage tracking → Dagster
+└── NEM → Airflow (ha task-sorrend az elsődleges)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Airflow</th>
+<th>Prefect</th>
+<th>Dagster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Szemlélet</td>
+<td>Task-centric</td>
+<td>Python-first</td>
+<td>Asset-centric</td>
+</tr>
+<tr>
+<td>Telepítés</td>
+<td>Nehéz</td>
+<td>Egyszerű</td>
+<td>Közepes</td>
+</tr>
+<tr>
+<td>Megfigyelhetőség</td>
+<td>UI + logs</td>
+<td>UI + logs</td>
+<td>Asset catalog + metadata</td>
+</tr>
+<tr>
+<td>dbt integráció</td>
+<td>BashOperator</td>
+<td>Prefect-dbt</td>
+<td>Natív</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Demo beadandó – f3.png</p>
+<p>Képernyőkép a Dagit UI Asset Catalog nézetéből, ahol a <code>daily_revenue</code> asset materializálva van, és látható az output metadata (days_covered, total_revenue) a Materialization Events szekción.</p>
+</div>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2026. március 31. 10:07:13">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. március 31. 10:07:13 CEST"><span class="timeago" datetime="2026-03-31T10:07:13+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. március 31. 10:07:13 CEST">2026-03-31</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
+          <img src="https://avatars.githubusercontent.com/u/22079595?v=4?size=72" alt="@kpomazi">
+        </a></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden="">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Vissza a tetejére
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
