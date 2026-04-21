@@ -1,0 +1,47 @@
+# Week 06 – Adatmenedzsment, architektúra, biztonság, adatminőség
+# Demo környezet
+#
+# Szolgáltatások:
+#   postgres  – demo4 (adatbiztonság) és demo6 (Great Expectations) adatbázisa
+#   jupyter   – JupyterLab (http://localhost:8888, token: demo)
+#
+# Indítás: docker compose up -d
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: week06-postgres
+    environment:
+      POSTGRES_USER: labor
+      POSTGRES_PASSWORD: labor
+      POSTGRES_DB: week06
+    ports:
+      - "5432:5432"
+    volumes:
+      - week06_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U labor -d week06"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: week06-jupyter
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_TOKEN: "demo"
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    restart: unless-stopped
+
+volumes:
+  week06_pgdata:

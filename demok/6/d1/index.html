@@ -1,0 +1,1661 @@
+<!DOCTYPE html><html lang="hu" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Pomázi Krisztián">
+      
+      
+      
+        <link rel="prev" href="../../5/d2/">
+      
+      
+        <link rel="next" href="../d2/">
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
+    
+    
+      
+        <title>Demo 1: DataOps és automatizáció - BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../extra-material-theme.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#demo-1-dataops-es-automatizacio" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" class="md-header__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Demo 1: DataOps és automatizáció
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="aut" data-md-color-primary="red" data-md-color-accent="red" aria-label="Váltás sötét témára" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Váltás sötét témára" for="__palette_2" hidden="">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"></path></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="" aria-label="Váltás világos témára" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Váltás világos témára" for="__palette_1" hidden="">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"></path></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Keresés">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bmeviaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubxav082/demok
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Kezdőlap
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../1/d1/" class="md-tabs__link">
+        1. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../2/d1a/" class="md-tabs__link">
+        2. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../3/d1/" class="md-tabs__link">
+        3. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../4/" class="md-tabs__link">
+        4. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../5/d1/" class="md-tabs__link">
+        5. EA
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        6. EA
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" class="md-nav__button md-logo" aria-label="BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók" data-md-component="logo">
+      
+  <img src="../../../logo-bme-aut.png" alt="logo">
+
+    </a>
+    BMEVIAUBXAV082 - Data Engineering a gyakorlatban előadás demók
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bmeviaubxav082/demok" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    bmeviaubxav082/demok
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Kezdőlap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1/d1/" class="md-nav__link">
+        Demo 1: Teljes Data Engineering Pipeline Python-ban
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1/d2/" class="md-nav__link">
+        Demo 2: Modern Data Engineering Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d1a/" class="md-nav__link">
+        Demo 1a: Forrásrendszerek feltárása és Python natív CDC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d1b/" class="md-nav__link">
+        Demo 1b: CDC Debezium-mal és Kafkával
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d2/" class="md-nav__link">
+        Demo 2: Batch ETL/ELT pipeline DuckDB-vel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2/d3/" class="md-nav__link">
+        Demo 3: Kafka Streaming Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d1/" class="md-nav__link">
+        Demo 1: PostgreSQL deep-dive
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d2/" class="md-nav__link">
+        Demo 2: MongoDB + Redis panorama
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d3/" class="md-nav__link">
+        Demo 3: Neo4j – gráf adatbázis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3/d4/" class="md-nav__link">
+        Demo 4: MinIO + DuckDB – Object Storage &amp; Data Lake
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4/" class="md-nav__link">
+        4. Előadás demók
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          5. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5/d1/" class="md-nav__link">
+        Demo 1: Apache Airflow – az első DAG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5/d2/" class="md-nav__link">
+        Demo 2: Prefect – Python-first orchestration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked="">
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          6. EA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          6. EA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix="">
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demo 1: DataOps és automatizáció
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Demo 1: DataOps és automatizáció
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-inditas" class="md-nav__link">
+    Docker Compose – indítás
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose – indítás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-kornyezet-elinditasa" class="md-nav__link">
+    1. Környezet elindítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-csomagok-telepitese-a-notebookban" class="md-nav__link">
+    2. Csomagok telepítése a notebookban
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-jupyterlab-megnyitasa" class="md-nav__link">
+    3. JupyterLab megnyitása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mi-a-dataops" class="md-nav__link">
+    Mi a DataOps?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devops-vs-dataops-osszehasonlitas" class="md-nav__link">
+    DevOps vs DataOps összehasonlítás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-for-data-pipelines" class="md-nav__link">
+    CI/CD for data pipelines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tesztelesi-piramis-adatra" class="md-nav__link">
+    Tesztelési piramis adatra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-es-pipeline-monitoring" class="md-nav__link">
+    Observability és pipeline monitoring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-contracts-upstreamdownstream-megallapodas" class="md-nav__link">
+    Data contracts – upstream–downstream megállapodás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataops-5-automatizacios-alapelve" class="md-nav__link">
+    DataOps 5 automatizációs alapelve
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-anyagok" class="md-nav__link">
+    Kapcsolódó anyagok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d2/" class="md-nav__link">
+        Demo 4: Adatbiztonság
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d3/" class="md-nav__link">
+        Demo 5: Adatminőség alapok
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../d4/" class="md-nav__link">
+        Demo 6: Great Expectations
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#attekintes" class="md-nav__link">
+    Áttekintés
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-inditas" class="md-nav__link">
+    Docker Compose – indítás
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose – indítás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-kornyezet-elinditasa" class="md-nav__link">
+    1. Környezet elindítása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-csomagok-telepitese-a-notebookban" class="md-nav__link">
+    2. Csomagok telepítése a notebookban
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-jupyterlab-megnyitasa" class="md-nav__link">
+    3. JupyterLab megnyitása
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mi-a-dataops" class="md-nav__link">
+    Mi a DataOps?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devops-vs-dataops-osszehasonlitas" class="md-nav__link">
+    DevOps vs DataOps összehasonlítás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-for-data-pipelines" class="md-nav__link">
+    CI/CD for data pipelines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tesztelesi-piramis-adatra" class="md-nav__link">
+    Tesztelési piramis adatra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-es-pipeline-monitoring" class="md-nav__link">
+    Observability és pipeline monitoring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-contracts-upstreamdownstream-megallapodas" class="md-nav__link">
+    Data contracts – upstream–downstream megállapodás
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataops-5-automatizacios-alapelve" class="md-nav__link">
+    DataOps 5 automatizációs alapelve
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kulcsfontossagu-tanulsagok" class="md-nav__link">
+    Kulcsfontosságú tanulságok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-anyagok" class="md-nav__link">
+    Kapcsolódó anyagok
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kapcsolodo-notebook" class="md-nav__link">
+    Kapcsolódó notebook
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="demo-1-dataops-es-automatizacio">Demo 1: DataOps és automatizáció<a class="headerlink" href="#demo-1-dataops-es-automatizacio" title="Permanent link">¶</a></h1>
+<h2 id="attekintes">Áttekintés<a class="headerlink" href="#attekintes" title="Permanent link">¶</a></h2>
+<p>A DataOps a DevOps elveit alkalmazza az adatmérnöki munkára: automatizálja a pipeline-ok tesztelését, üzembe helyezését és monitorozását. Célja, hogy az adatcsapat gyorsan, megbízhatóan és reprodukálható módon tudjon adatot szállítani az üzleti felhasználóknak – hibakeresés helyett értékteremtésre fókuszálva.</p>
+<div class="admonition info">
+<p class="admonition-title">Előfeltételek</p>
+<p>Docker Desktop fut. JupyterLab: <strong><a href="http://localhost:8888">http://localhost:8888</a></strong> (token: <code>demo</code>). Notebook: <code>demo1-dataops.ipynb</code>.</p>
+</div>
+<h2 id="docker-compose-inditas">Docker Compose – indítás<a class="headerlink" href="#docker-compose-inditas" title="Permanent link">¶</a></h2>
+<h3 id="1-kornyezet-elinditasa">1. Környezet elindítása<a class="headerlink" href="#1-kornyezet-elinditasa" title="Permanent link">¶</a></h3>
+<div class="highlight"><span class="filename">docker-compose.yaml</span><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">jupyter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupyter/scipy-notebook:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">week06-jupyter</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8888:8888"</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">JUPYTER_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="s">"demo"</span>
+<span class="w">      </span><span class="nt">JUPYTER_ENABLE_LAB</span><span class="p">:</span><span class="w"> </span><span class="s">"yes"</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./notebooks:/home/jovyan/work</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<h3 id="2-csomagok-telepitese-a-notebookban">2. Csomagok telepítése a notebookban<a class="headerlink" href="#2-csomagok-telepitese-a-notebookban" title="Permanent link">¶</a></h3>
+<p>Az első notebook cellában:</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">pandas</span> <span class="n">pytest</span>
+</code></pre></div>
+<h3 id="3-jupyterlab-megnyitasa">3. JupyterLab megnyitása<a class="headerlink" href="#3-jupyterlab-megnyitasa" title="Permanent link">¶</a></h3>
+<p>Böngészőben: <strong><a href="http://localhost:8888">http://localhost:8888</a></strong> (token: <code>demo</code>). Nyissuk meg a <code>demo1-dataops.ipynb</code> notebookot, és futtassuk a cellákat sorban.</p>
+<hr>
+<h2 id="mi-a-dataops">Mi a DataOps?<a class="headerlink" href="#mi-a-dataops" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>graph LR
+    Plan["📋 Plan\nKövetelmények\nSLA-k"]
+    Code["💻 Code\nPipeline\ndbt modellek"]
+    Test["🧪 Test\ndbt test\nGE checkpoint"]
+    Release["📦 Release\nVerziószám\nChangelog"]
+    Deploy["🚀 Deploy\nStaging → Prod"]
+    Operate["⚙️ Operate\nOrchestration\nAirflow DAG"]
+    Monitor["📊 Monitor\nSLA tracking\nAlerting"]
+
+    Plan --&gt; Code --&gt; Test --&gt; Release --&gt; Deploy --&gt; Operate --&gt; Monitor --&gt; Plan</code></pre>
+<p>A DataOps <strong>nem egy eszköz</strong>, hanem egy <strong>gondolkodásmód és folyamat</strong>: a DevOps-ból ismert elveket (verziókezelés, CI/CD, automatizált tesztelés, monitoring) alkalmazzuk az adatpipelinekre.</p>
+<div class="admonition note">
+<p class="admonition-title">DataOps ≠ DevOps</p>
+<p>A szoftvermérnöki DevOps-tól két kulcspont különbözteti meg:
+- <strong>Az adat nem kód</strong>: a pipeline futtatása nem csak a kódtól függ – a forrásadat sémája is változhat (schema drift), az adat késve érkezhet (late data), és az adatminőség futásról futásra változhat
+- <strong>Data contracts</strong>: az upstream és downstream csapatok közötti szerződések nem API specifikációk, hanem adat sémák, minőségi SLA-k és frissességi garanciák</p>
+</div>
+<hr>
+<h2 id="devops-vs-dataops-osszehasonlitas">DevOps vs DataOps összehasonlítás<a class="headerlink" href="#devops-vs-dataops-osszehasonlitas" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Szempont</th>
+<th>DevOps</th>
+<th>DataOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Artifact</strong></td>
+<td>Kód, Docker image</td>
+<td>Adat, pipeline, séma</td>
+</tr>
+<tr>
+<td><strong>Tesztelés</strong></td>
+<td>Unit, integration, E2E</td>
+<td>DQ gate, contract test, freshness check</td>
+</tr>
+<tr>
+<td><strong>Versioning</strong></td>
+<td>Git branch, tag</td>
+<td>dbt model verzió, Delta table version</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Container registry → K8s</td>
+<td>Airflow DAG → Bronze/Gold réteg</td>
+</tr>
+<tr>
+<td><strong>Monitoring</strong></td>
+<td>CPU, memória, latency</td>
+<td>Sor szám, frissesség, DQ score</td>
+</tr>
+<tr>
+<td><strong>Hibakód</strong></td>
+<td>500 Internal Server Error</td>
+<td>NULL értékek, schema mismatch, late data</td>
+</tr>
+<tr>
+<td><strong>Rollback</strong></td>
+<td>Docker image régebbi verzió</td>
+<td>Delta time travel, dbt <code>--select</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="cicd-for-data-pipelines">CI/CD for data pipelines<a class="headerlink" href="#cicd-for-data-pipelines" title="Permanent link">¶</a></h2>
+<p>A CI/CD (Continuous Integration / Continuous Delivery) az adatpipelinekre alkalmazva azt jelenti, hogy <strong>minden kódpush automatikusan tesztel és deployol</strong> – emberi beavatkozás nélkül.</p>
+<pre class="mermaid"><code>graph LR
+    Push["🔀 git push\nfeature branch"]
+    Lint["🔍 Lint\nsqlfluff\npylint"]
+    Unit["🧪 Unit tests\npytest"]
+    DBT["🔨 dbt test\nschema tests"]
+    GE["✅ GE Checkpoint\nDQ gate"]
+    Stage["🚧 Staging deploy\nBronze/Silver"]
+    Approve["👤 Review\n(opcionális)"]
+    Prod["🚀 Prod deploy\nGold réteg"]
+
+    Push --&gt; Lint --&gt; Unit --&gt; DBT --&gt; GE --&gt; Stage --&gt; Approve --&gt; Prod
+    GE --&gt;|FAIL| Block["🔴 Pipeline\nmegállítva"]</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># .github/workflows/data-pipeline-ci.yml</span>
+<span class="c1"># GitHub Actions CI/CD – adatpipeline automatizálása</span>
+
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Pipeline CI</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">feature/**</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kód letöltése</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python beállítása</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">"3.11"</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Függőségek telepítése</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -q dbt-duckdb great_expectations pandas pytest sqlfluff</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SQL lint (sqlfluff)</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlfluff lint models/ --dialect duckdb</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python unit tesztek</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/unit/ -v</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dbt modellek buildelése és tesztelése</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">dbt deps --project-dir dbt_project/</span>
+<span class="w">          </span><span class="no">dbt build --project-dir dbt_project/   # run + test egyben</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Great Expectations DQ gate</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python scripts/run_ge_checkpoint.py</span>
+<span class="w">        </span><span class="c1"># sys.exit(1) esetén a job FAILED → merge blokkolt</span>
+
+<span class="w">  </span><span class="nt">deploy-staging</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == 'refs/heads/main'</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy staging rétegbe</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python scripts/deploy_pipeline.py --env staging</span>
+</code></pre></div>
+<hr>
+<h2 id="tesztelesi-piramis-adatra">Tesztelési piramis adatra<a class="headerlink" href="#tesztelesi-piramis-adatra" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>graph BT
+    Unit["🔷 Unit tesztek\n(sok, gyors)\ndbt singular tests\npytest functions"]
+    Integration["🔶 Integration tesztek\n(közepes)\nGE DQ checkpoint\nCross-table consistency"]
+    Contract["🔴 Contract tesztek\n(kevés)\nSchema registry\nData contract YAML"]
+    E2E["⬛ E2E tesztek\n(ritka, lassú)\nTeljes pipeline\nGold réteg validálás"]
+
+    Unit --&gt; Integration --&gt; Contract --&gt; E2E
+
+    style Unit fill:#4caf50,color:#fff
+    style Integration fill:#ff9800,color:#fff
+    style Contract fill:#f44336,color:#fff
+    style E2E fill:#333,color:#fff</code></pre>
+<table>
+<thead>
+<tr>
+<th>Szint</th>
+<th>Mit tesztel</th>
+<th>Eszköz</th>
+<th>Futási idő</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit</strong></td>
+<td>Egy transzformáció logikája</td>
+<td><code>pytest</code>, dbt singular test</td>
+<td>másodpercek</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Adatminőség a teljes DataFrame-en</td>
+<td>Great Expectations</td>
+<td>percek</td>
+</tr>
+<tr>
+<td><strong>Contract</strong></td>
+<td>Upstream séma nem változott-e</td>
+<td>Schema registry, data contract</td>
+<td>percek</td>
+</tr>
+<tr>
+<td><strong>E2E</strong></td>
+<td>A pipeline elejétől a Gold rétegig</td>
+<td>Teljes futtatás staging-en</td>
+<td>tíz percek</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/unit/test_transformations.py</span>
+<span class="c1"># Egyszerű Python unit tesztek a transzformációs logikához</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"."</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pipeline.transformations</span> <span class="kn">import</span> <span class="n">clean_orders</span><span class="p">,</span> <span class="n">compute_daily_revenue</span>
+
+<span class="c1"># Tesztadat</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">sample_orders</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">"order_id"</span><span class="p">:</span>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">104</span><span class="p">],</span>
+        <span class="s2">"amount"</span><span class="p">:</span>      <span class="p">[</span><span class="mf">12500.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">8750.0</span><span class="p">,</span> <span class="mf">450.0</span><span class="p">],</span>
+        <span class="s2">"order_date"</span><span class="p">:</span>  <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2024-01-15"</span><span class="p">,</span> <span class="s2">"2024-01-15"</span><span class="p">,</span> <span class="s2">"2024-01-16"</span><span class="p">,</span> <span class="s2">"2024-01-16"</span><span class="p">]),</span>
+        <span class="s2">"status"</span><span class="p">:</span>      <span class="p">[</span><span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"cancelled"</span><span class="p">,</span> <span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"pending"</span><span class="p">],</span>
+    <span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">test_clean_orders_removes_nulls</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A clean_orders kiszűri a NULL order_id-jú sorokat."""</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">clean_orders</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"NULL order_id nem szűrődött ki"</span>
+
+<span class="k">def</span> <span class="nf">test_clean_orders_removes_negative_amounts</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A clean_orders kiszűri a negatív összegű sorokat."""</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">clean_orders</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">"amount"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"Negatív amount maradt az adatban"</span>
+
+<span class="k">def</span> <span class="nf">test_daily_revenue_aggregation</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A napi bevétel aggregáció csak a shipped státuszú rendeléseket veszi figyelembe."""</span>
+    <span class="n">cleaned</span>  <span class="o">=</span> <span class="n">clean_orders</span><span class="p">(</span><span class="n">sample_orders</span><span class="p">)</span>
+    <span class="n">revenue</span>  <span class="o">=</span> <span class="n">compute_daily_revenue</span><span class="p">(</span><span class="n">cleaned</span><span class="p">)</span>
+    <span class="c1"># 2024-01-15: csak az 1. sor shipped → 12500.0</span>
+    <span class="n">jan15</span>    <span class="o">=</span> <span class="n">revenue</span><span class="p">[</span><span class="n">revenue</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"2024-01-15"</span><span class="p">][</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">jan15</span> <span class="o">==</span> <span class="mf">12500.0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Várt 12500.0, kapott </span><span class="si">{</span><span class="n">jan15</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<hr>
+<h2 id="observability-es-pipeline-monitoring">Observability és pipeline monitoring<a class="headerlink" href="#observability-es-pipeline-monitoring" title="Permanent link">¶</a></h2>
+<p>Az observability a futó pipeline „megfigyelhetőségét" jelenti: tudjuk-e, hogy mi történik belül, anélkül hogy bele kellene nyúlnunk?</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">class</span> <span class="nc">PipelineMonitor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Egyszerű pipeline SLA és freshness monitor.</span>
+<span class="sd">    Valós rendszerben: Datadog, Grafana + Prometheus, vagy Monte Carlo.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sla_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span> <span class="o">=</span> <span class="n">pipeline_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sla_minutes</span>   <span class="o">=</span> <span class="n">sla_minutes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># ── Futási idő mérés ──────────────────────────────────────────────────────</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">] ▶ Indítás: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%H:%M:%S'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">"duration_sec"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">"✅"</span> <span class="k">if</span> <span class="n">elapsed</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sla_minutes</span> <span class="o">*</span> <span class="mi">60</span> <span class="k">else</span> <span class="s2">"⚠️ SLA BREACH"</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">] ■ Futási idő: </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">elapsed</span>
+
+    <span class="c1"># ── Sor szám ellenőrzés ───────────────────────────────────────────────────</span>
+    <span class="k">def</span> <span class="nf">check_row_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">min_rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                        <span class="n">max_rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10_000_000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">"row_count"</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="n">min_rows</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">max_rows</span>
+        <span class="n">icon</span> <span class="o">=</span> <span class="s2">"✅"</span> <span class="k">if</span> <span class="n">ok</span> <span class="k">else</span> <span class="s2">"❌"</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">icon</span><span class="si">}</span><span class="s2"> Sorok száma: </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> (elvárt: </span><span class="si">{</span><span class="n">min_rows</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">–</span><span class="si">{</span><span class="n">max_rows</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sor szám (</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">) kívül esik a várt tartományon!"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ok</span>
+
+    <span class="c1"># ── Frissesség ellenőrzés ─────────────────────────────────────────────────</span>
+    <span class="k">def</span> <span class="nf">check_freshness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">date_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="n">max_age_hours</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">latest</span>     <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">date_col</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">age_hours</span>  <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">latest</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">())</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3600</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">"data_age_hours"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">age_hours</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">ok</span>   <span class="o">=</span> <span class="n">age_hours</span> <span class="o">&lt;=</span> <span class="n">max_age_hours</span>
+        <span class="n">icon</span> <span class="o">=</span> <span class="s2">"✅"</span> <span class="k">if</span> <span class="n">ok</span> <span class="k">else</span> <span class="s2">"❌"</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">icon</span><span class="si">}</span><span class="s2"> Adat kora: </span><span class="si">{</span><span class="n">age_hours</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">h (max SLA: </span><span class="si">{</span><span class="n">max_age_hours</span><span class="si">}</span><span class="s2">h)"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Adat túl régi: </span><span class="si">{</span><span class="n">age_hours</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">h &gt; </span><span class="si">{</span><span class="n">max_age_hours</span><span class="si">}</span><span class="s2">h SLA!"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ok</span>
+
+    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">] 📊 Összefoglaló: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="c1"># Példa futtatás</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"order_id"</span><span class="p">:</span>   <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4873</span><span class="p">),</span>
+    <span class="s2">"order_date"</span><span class="p">:</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">4872</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span>     <span class="p">[</span><span class="mf">1000.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4872</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">monitor</span> <span class="o">=</span> <span class="n">PipelineMonitor</span><span class="p">(</span><span class="s2">"orders_silver_pipeline"</span><span class="p">,</span> <span class="n">sla_minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">monitor</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>   <span class="c1"># szimulált futás</span>
+<span class="n">monitor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">monitor</span><span class="o">.</span><span class="n">check_row_count</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_rows</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">monitor</span><span class="o">.</span><span class="n">check_freshness</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">date_col</span><span class="o">=</span><span class="s2">"order_date"</span><span class="p">,</span> <span class="n">max_age_hours</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">monitor</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h2 id="data-contracts-upstreamdownstream-megallapodas">Data contracts – upstream–downstream megállapodás<a class="headerlink" href="#data-contracts-upstreamdownstream-megallapodas" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># data_contracts/orders_contract.py</span>
+<span class="c1"># Data contract: az upstream csapat garantálja, a downstream ellenőrzi</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># A contract YAML/JSON-ban definiálható – itt inline dict a demo kedvéért</span>
+<span class="n">ORDERS_CONTRACT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"dataset"</span><span class="p">:</span>  <span class="s2">"orders"</span><span class="p">,</span>
+    <span class="s2">"version"</span><span class="p">:</span>  <span class="s2">"1.2.0"</span><span class="p">,</span>
+    <span class="s2">"owner"</span><span class="p">:</span>    <span class="s2">"sales-domain-team"</span><span class="p">,</span>
+    <span class="s2">"sla"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"freshness_hours"</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+        <span class="s2">"min_rows"</span><span class="p">:</span>        <span class="mi">1000</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">"schema"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"order_id"</span><span class="p">:</span>    <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span>   <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"unique"</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span>   <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="s2">"amount"</span><span class="p">:</span>      <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"float64"</span><span class="p">,</span> <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
+        <span class="s2">"status"</span><span class="p">:</span>      <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span>  <span class="s2">"nullable"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                        <span class="s2">"allowed_values"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"pending"</span><span class="p">,</span> <span class="s2">"cancelled"</span><span class="p">,</span> <span class="s2">"returned"</span><span class="p">]},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">validate_contract</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Ellenőrzi, hogy a DataFrame megfelel-e a data contract-nak."""</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">contract</span><span class="p">[</span><span class="s2">"schema"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hiányzó oszlop: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"nullable"</span><span class="p">]</span> <span class="ow">and</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"NULL értékek: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"unique"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Duplikált értékek: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"min"</span> <span class="ow">in</span> <span class="n">rules</span> <span class="ow">and</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">rules</span><span class="p">[</span><span class="s2">"min"</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Értékkülső </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">{</span><span class="n">rules</span><span class="p">[</span><span class="s1">'min'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"allowed_values"</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+            <span class="n">invalid</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s2">"allowed_values"</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">invalid</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Érvénytelen értékek </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">invalid</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ Data contract VIOLATED:"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Data contract OK: </span><span class="si">{</span><span class="n">contract</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">]</span><span class="si">}</span><span class="s2"> v</span><span class="si">{</span><span class="n">contract</span><span class="p">[</span><span class="s1">'version'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"order_id"</span><span class="p">:</span>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">"customer_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">],</span>
+    <span class="s2">"amount"</span><span class="p">:</span>      <span class="p">[</span><span class="mf">12500.0</span><span class="p">,</span> <span class="mf">3200.0</span><span class="p">,</span> <span class="mf">8750.0</span><span class="p">],</span>
+    <span class="s2">"status"</span><span class="p">:</span>      <span class="p">[</span><span class="s2">"shipped"</span><span class="p">,</span> <span class="s2">"pending"</span><span class="p">,</span> <span class="s2">"cancelled"</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="n">validate_contract</span><span class="p">(</span><span class="n">df_test</span><span class="p">,</span> <span class="n">ORDERS_CONTRACT</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="dataops-5-automatizacios-alapelve">DataOps 5 automatizációs alapelve<a class="headerlink" href="#dataops-5-automatizacios-alapelve" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Az 5 alappillér</p>
+<table>
+<thead>
+<tr>
+<th>Elv</th>
+<th>Mit jelent</th>
+<th>Eszköz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Version control</strong></td>
+<td>Minden kód, konfiguráció, séma gitben van</td>
+<td>Git, dbt, Terraform</td>
+</tr>
+<tr>
+<td><strong>2. CI/CD</strong></td>
+<td>Minden push automatikusan tesztel és deployol</td>
+<td>GitHub Actions, GitLab CI</td>
+</tr>
+<tr>
+<td><strong>3. Automated testing</strong></td>
+<td>Unit → integration → contract → E2E</td>
+<td>pytest, dbt test, GE</td>
+</tr>
+<tr>
+<td><strong>4. Monitoring &amp; alerting</strong></td>
+<td>SLA breach, DQ romlás, late data riasztás</td>
+<td>Datadog, Grafana, Monte Carlo</td>
+</tr>
+<tr>
+<td><strong>5. Collaboration</strong></td>
+<td>Data contract, dokumentáció, közös DQ definíciók</td>
+<td>DataHub, dbt docs, Confluence</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="kulcsfontossagu-tanulsagok">Kulcsfontosságú tanulságok<a class="headerlink" href="#kulcsfontossagu-tanulsagok" title="Permanent link">¶</a></h2>
+<ul>
+<li>A <strong>DataOps</strong> nem egy szoftver, hanem a DevOps kultúra alkalmazása az adatmérnöki munkára – a cél a megbízható, gyors, automatizált adatszállítás</li>
+<li>A <strong>CI/CD for data</strong> ott válik kritikussá, ahol több csapat dolgozik ugyanazon az adatplatformon – emberi jóváhagyás helyett automatizált tesztek blokkolják a rossz minőségű kódot</li>
+<li>A <strong>tesztelési piramis</strong> (unit → integration → contract → E2E) az adatmérnöki kontextusban konkrétan: pytest + dbt test + GE checkpoint + staging deploy</li>
+<li>A <strong>data contract</strong> az upstream csapat ígérete a downstream csapatnak – ha séma változik, a contract frissítése kötelező; a CI/CD automatikusan ellenőrzi</li>
+<li>Az <strong>observability</strong> (futási idő, sorszám, frissesség) nélkül csak akkor derül ki a hiba, ha az üzleti felhasználó panaszkodik – a monitoring célja, hogy mi értesüljünk elsőként</li>
+</ul>
+<h2 id="kapcsolodo-anyagok">Kapcsolódó anyagok<a class="headerlink" href="#kapcsolodo-anyagok" title="Permanent link">¶</a></h2>
+<ul>
+<li>Demo 2 – Adatmenedzsment (Data Governance és DataOps összefüggése)</li>
+<li>Demo 5 – Adatminőség alapok (DQ gate a DataOps tesztelési rétegében)</li>
+<li>Demo 6 – Great Expectations (a CI/CD DQ gate implementációja)</li>
+<li>Labor 05 – Orchestration (Airflow a DataOps „Operate" fázisában)</li>
+</ul>
+<h2 id="kapcsolodo-notebook">Kapcsolódó notebook<a class="headerlink" href="#kapcsolodo-notebook" title="Permanent link">¶</a></h2>
+<p><code>work/demo1-dataops.ipynb</code></p>
+
+    <hr>
+  <div class="md-source-file">
+    <span class="md-source-file__fact"> <span class="md-icon" title="Utolsó frissítés"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z">
+          </path>
+        </svg>
+      </span>
+      <span title="2026. április 21. 10:49:43">
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2026. április 21. 10:49:43 CEST"><span class="timeago" datetime="2026-04-21T10:49:43+02:00" locale="hu"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2026. április 21. 10:49:43 CEST">2026-04-21</span>
+      </span>
+    </span>
+
+    
+
+    <span class="md-source-file__fact">
+      <span class="md-icon" title="Szerzők">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z">
+          </path>
+        </svg>
+      </span>
+      <span>Szerzők</span>
+      <nav><a href="https://github.com/kpomazi" target="_blank" rel="noopener noreferrer" class="md-author" title="@kpomazi">
+          <img src="https://avatars.githubusercontent.com/u/22079595?v=4?size=72" alt="@kpomazi">
+        </a></nav>      
+    </span>
+  </div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden="">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Vissza a tetejére
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © BME VIK AUT
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.top", "search.suggest"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
